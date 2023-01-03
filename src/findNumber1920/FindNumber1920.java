@@ -1,11 +1,13 @@
+package findNumber1920;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class bj1920 {
+public class FindNumber1920 {
 
     static int[] arrN;
     static int[] arrX;
-    void result(){
+    public void result(){
         //n에 x값이 있는지 검색. n이 검색풀 x가 검색대상
         Scanner input=new Scanner(System.in);
         int n=input.nextInt(); //n값
@@ -68,5 +70,4 @@ public class bj1920 {
             return subtree(start,index-1,find);
         }
     }
-
 }
