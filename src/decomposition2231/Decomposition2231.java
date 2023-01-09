@@ -51,6 +51,7 @@ public class Decomposition2231 {
         // 입력값이 몇자리 수인지 확인 length
         // 범위를 좁혀야해
         //  n >>> 216=n+27
+        // 4567 = x-36 ~ eㄷㅅㄷ...
 
         int min=numX;
 

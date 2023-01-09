@@ -24,29 +24,25 @@ public class BalancedWorld4949 {
 
 
             for(int i=0; i<str.length();i++){
-                if(str.charAt(i)=='('){
-                    //System.out.print("**1"+","+i+":"+str.charAt(i));
+                if(str.charAt(i)=='('){ //1
                     stack.push(str.charAt(i));
 
-                }else if(str.charAt(i)=='['){
-                    //System.out.print("**2"+","+i+":"+str.charAt(i));
+                }else if(str.charAt(i)=='['){ //2
                     stack.push(str.charAt(i));
 
-                }else if(str.charAt(i)==')'){
-                    //System.out.print("**3"+","+i+":"+str.charAt(i));
 
-                    if(stack.size()==0) {
+                }else if(str.charAt(i)==')'){//3
+                    if(stack.size()==0) { // 틀린놈
                         stack.push(str.charAt(i));
                         break;
                     }
 
-                    if(stack.peek()=='(')stack.pop();
+                    if(stack.peek()=='(') stack.pop(); // () ㅓㅂ렷.
                     else break;
 
 
 
-                }else if(str.charAt(i)==']'){
-                    //System.out.print("**4"+","+i+":"+str.charAt(i));
+                }else if(str.charAt(i)==']'){ //4
 
                     if(stack.size()==0) {
                         stack.push(str.charAt(i));
@@ -56,7 +52,6 @@ public class BalancedWorld4949 {
                     if(stack.peek()=='[') stack.pop();
                     else break;
 
-                    //System.out.println("  count:"+count);
                 }
             }
 
