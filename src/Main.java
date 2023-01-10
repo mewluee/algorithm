@@ -1,19 +1,15 @@
 
-import samsungMail.SamsungMail01;
+import dfsExample1987.DfsExample1987;
 
 import java.io.IOException;
-import java.util.*;
 
 public class Main {
 
 
-    public static void main(String[] args) {
-        SamsungMail01 ssm01=new SamsungMail01();
-        try{
-            ssm01.result2();
-        }catch (IOException ioException){
-            System.out.println("예외 발생 ㅠ");
-        }
+    public static void main(String[] args) throws IOException {
+        DfsExample1987 dfsExample=new DfsExample1987();
+        dfsExample.result();
+
 
 
     }
