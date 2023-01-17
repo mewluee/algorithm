@@ -60,6 +60,8 @@ public class DfsExample1987 {
         }
     }
 
+    // 위에는 사용자 지정 변수 설정///////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////
     public void result() throws IOException {
 
         BufferedReader bf=new BufferedReader(new InputStreamReader(System.in));
@@ -118,7 +120,11 @@ public class DfsExample1987 {
             //수도코드는 위처럼 짜놓고 실제 코드는 이상하게 짬;
             //문제점: 백트래킹 안함.
             //일단 입에 넣어보고 아니면 뱉어야한다. push / pop
-            //내가 한 코드는
+            //내가 한 코드는 중간에 한번 끊어졌었다.
+            //알고리즘 흐름을 보니까 먹고 다 간게 아니면 다시 hash에서 뱉어내야하는데 뱉질 않고
+            //후반에 또 보니까 중복안되서 일단 먹어서 총 10개가 된 것 같다.
+            //종료 조건을 어떻게 어디에 두느냐가 관건.
+
 
             int r=0,c=0;
             int max=0;
@@ -135,7 +141,7 @@ public class DfsExample1987 {
                 /*System.out.print(">>>trip:");
                 System.out.println(">>>tripCountry:"+tripCountry.toString());*/
 
-                findRoute(neighbors.get(i)[0],neighbors.get(i)[1],trip,tripCountry,map);
+                trip=findRoute(neighbors.get(i)[0],neighbors.get(i)[1],trip,tripCountry,map);
 
                 if(max<tripCountry.size()){
                     max=tripCountry.size();
@@ -157,30 +163,50 @@ public class DfsExample1987 {
 
     }
 
-    private void findRoute(int r, int c,Stack<int[]> trip, HashSet<String> tripCountry,Country[][] map){
+    private Stack<int[]> findRoute(int r, int c,Stack<int[]> trip, HashSet<String> tripCountry,Country[][] map) {
+
+        Stack<int[]> copytrip = (Stack<int[]>) trip.clone();
+        System.out.println("메서드진입 copytrip:");
+        for(int[] one:copytrip){
+            System.out.print(map[one[0]][one[1]].getName()+" ");
+        }
 
 
-            //System.out.println("**메서드 진입함 r:"+r+", c:"+c);
-            // 좌표 r,c를 외부에서 넣어줌
-            //System.out.println("**trip[0]:"+trip.peek()[0]+", trip[1]:"+trip.peek()[1]);
-            if(trip.peek()[0]!=r || trip.peek()[1]!=c){ // stack에서 꺼낸 최근 int[][]값 != 이웃의 int[][] 값 >> 바로 전 여행지가 아닐때
-                //System.out.println("***조건(1)");
-                if(!tripCountry.contains(map[r][c].getName())){ // hashset에 여행한 나라가 아닐 경우~
-                    //System.out.print("***조건(2)");
-                    //System.out.println(">>>country:"+map[r][c].getName());
-                    trip.push(map[r][c].getMyAddress());
-                    tripCountry.add(map[r][c].getName());
+        //System.out.println("**메서드 진입함 r:"+r+", c:"+c);
+        // 좌표 r,c를 외부에서 넣어줌
+        //System.out.println("**trip[0]:"+trip.peek()[0]+", trip[1]:"+trip.peek()[1]);
+        if (copytrip.peek()[0] != r || copytrip.peek()[1] != c) { // stack에서 꺼낸 최근 int[][]값 != 이웃의 int[][] 값 >> 바로 전 여행지가 아닐때
+            //System.out.println("***조건(1)");
+            if (!tripCountry.contains(map[r][c].getName())) { // hashset에 여행한 나라가 아닐 경우~
+                //System.out.print("***조건(2)");
+                //System.out.println(">>>country:"+map[r][c].getName());
 
-                    ArrayList<int[]> neighbors=map[r][c].getNeighbors(); // 추가했다면 좌표 r,c 이웃들 데이터 가져오기
+//                    trip.push(map[r][c].getMyAddress());
+//                    tripCountry.add(map[r][c].getName());
+//
+//                    ArrayList<int[]> neighbors=map[r][c].getNeighbors(); // 추가했다면 좌표 r,c 이웃들 데이터 가져오기
+//
+//                    for(int i=0; i<neighbors.size(); i++){
+//                        findRoute(neighbors.get(i)[0],neighbors.get(i)[1],trip,tripCountry,map);
+//                    }
 
-                    for(int i=0; i<neighbors.size(); i++){
-                        findRoute(neighbors.get(i)[0],neighbors.get(i)[1],trip,tripCountry,map);
-                    }
-
+                copytrip.push(map[r][c].getMyAddress());
+                //코드 수정
+                ArrayList<int[]> neighbors = map[r][c].getNeighbors();
+                for (int i = 0; i < neighbors.size(); i++) {
+                    return findRoute(neighbors.get(i)[0], neighbors.get(i)[1], copytrip, tripCountry, map);
 
                 }
-            }
 
+            }
+            tripCountry.add(map[r][c].getName());
+
+
+        }
+        return trip;
 
     }
+
+
+
 }
