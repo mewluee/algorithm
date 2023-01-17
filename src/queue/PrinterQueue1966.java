@@ -1,11 +1,14 @@
-
+package queue;
 
 import java.io.*;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
-public class Main {
+public class PrinterQueue1966 {
 
-    public static void main(String[] args) throws IOException {
+    private String site="https://www.acmicpc.net/problem/1966";
+
+    public void result() throws IOException {
 
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
@@ -61,7 +64,7 @@ public class Main {
 
                 if (num < max) { //중요도가 높은 문서가 뒤에 있으니까.
                     queue.add(num); //다시 큐에 들어가~
-                    if(index==M){//M의 값이 바껴야함.
+                    if(index==M){// 뒤로가는 값이 내가 찾는 index값이면 index랑 M의 값이 바껴야함.
                         M=queue.size(); // (제일 뒤로가니까)
                         index=0; // 다시 해당 M까지 새야함.
                     }
@@ -88,8 +91,6 @@ public class Main {
 
 
         bw.close();
-
-
     }
 
 
