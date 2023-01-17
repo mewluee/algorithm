@@ -1,4 +1,4 @@
-package hashmap.poketmon1620;
+package hashmap;
 
 import java.io.*;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package dfsExample1987;
+package dfs;
 
 import java.io.*;
 import java.util.*;

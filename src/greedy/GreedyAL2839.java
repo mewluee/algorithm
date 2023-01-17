@@ -1,4 +1,4 @@
-package greedyAL2839;
+package greedy;
 
 import java.io.*;
 

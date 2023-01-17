@@ -1,4 +1,4 @@
-package findDecimal1978;
+package math;
 
 import java.util.Scanner;
 

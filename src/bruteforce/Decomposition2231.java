@@ -1,4 +1,4 @@
-package decomposition2231;
+package bruteforce;
 
 import java.util.Scanner;
 

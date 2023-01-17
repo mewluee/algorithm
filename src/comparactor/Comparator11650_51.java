@@ -1,4 +1,4 @@
-package comparator11650_51;
+package comparactor;
 
 import java.io.*;
 import java.util.Arrays;

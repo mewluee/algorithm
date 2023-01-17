@@ -1,4 +1,4 @@
-package printingChessboard1018;
+package bruteforce;
 
 import java.util.Scanner;
 
@@ -14,19 +14,19 @@ public class PrintingChessboard1018 {
 
             for(int k=rowStart; k<rowStart+8; k++){
                 for(int v=colStart; v<colStart+8; v++){
-                    System.out.println("k:"+k+",v:"+v+", char:"+arrStr[k].charAt(v));
+                    //System.out.println("k:"+k+",v:"+v+", char:"+arrStr[k].charAt(v));
                     if(k%2==0){ // 행이 짝수일때
                         if(v%2==0){ // 열도 짝수면 W여야함
                             if(arrStr[k].charAt(v)=='B'){ //그런데 B값이면 카운터 증가
                                 //System.out.println("(1)");
                                 count++;
-                                System.out.println("(1)증가됨");
+                                //System.out.println("(1)증가됨");
                             }
                         }else { //열이 홀수면 B여야함
                             if(arrStr[k].charAt(v)=='W'){ //그런데 W값이면 카운터 증가
                                 //System.out.println("(2)");
                                 count++;
-                                System.out.println("(2)증가됨");
+                                //System.out.println("(2)증가됨");
                             }
                         }
                     }else{ // 행이 홀수일때
@@ -34,13 +34,13 @@ public class PrintingChessboard1018 {
                             if(arrStr[k].charAt(v)=='W'){ // 그런데 W값이면 카운터 증가
                                 //System.out.println("(3)");
                                 count++;
-                                System.out.println("(3)증가됨");
+                                //System.out.println("(3)증가됨");
                             }
                         }else {//열이 홀수면 W여야함
                             if(arrStr[k].charAt(v)=='B'){ // 그런데 B값이면 카운터 증가
                                 //System.out.println("(4)");
                                 count++;
-                                System.out.println("(4)증가됨");
+                                //System.out.println("(4)증가됨");
                             }
                         }
                     }
@@ -51,29 +51,29 @@ public class PrintingChessboard1018 {
 
             for(int k=rowStart; k<rowStart+8; k++){
                 for(int v=colStart; v<colStart+8; v++){
-                    System.out.println("k:"+k+",v:"+v+", char:"+arrStr[k].charAt(v));
+                    //System.out.println("k:"+k+",v:"+v+", char:"+arrStr[k].charAt(v));
                     if(k%2==0){ // 행이 짝수일때
                         if(v%2==0){ //열이 짝수면 B여야함
                             if(arrStr[k].charAt(v)=='W'){ // 그런데 W면 카운터 증가
                                 count++;
-                                System.out.println("(1)증가됨");
+                                //System.out.println("(1)증가됨");
                             }
                         }else { //열이 홀수면 W여야함
                             if(arrStr[k].charAt(v)=='B'){ // 그런데 B면 카운터 증가
                                 count++;
-                                System.out.println("(2)증가됨");
+                                //System.out.println("(2)증가됨");
                             }
                         }
                     }else{ // 행이 홀수일때
                         if(v%2==0){ // 열이 짝수면
                             if(arrStr[k].charAt(v)=='B'){
                                 count++;
-                                System.out.println("(3)증가됨");
+                                //System.out.println("(3)증가됨");
                             }
                         }else {
                             if(arrStr[k].charAt(v)=='W'){
                                 count++;
-                                System.out.println("(4)증가됨");
+                                //System.out.println("(4)증가됨");
                             }
                         }
                     }
@@ -82,7 +82,10 @@ public class PrintingChessboard1018 {
 
         }
 
+        count=Math.min(count,64-count);
+
         //System.out.println(count);
+
         return count;
     }
 

@@ -1,4 +1,4 @@
-package findNumber1920;
+package binarysearch;
 
 import java.util.Arrays;
 import java.util.Scanner;

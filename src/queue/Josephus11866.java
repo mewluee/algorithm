@@ -1,4 +1,4 @@
-package josephus11866;
+package queue;
 
 import java.io.*;
 import java.util.LinkedList;
