@@ -1,10 +1,14 @@
+package queue;
 
 import java.io.*;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
-public class Main {
+public class Card2164 {
 
-    public static void main(String[] args) throws IOException {
+    private String site="https://www.acmicpc.net/problem/2164";
+
+    public void result() throws IOException {
 
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
@@ -29,8 +33,5 @@ public class Main {
         bw.write(Integer.toString(queue.peek()));
 
         bw.close();
-
     }
-
-
 }
