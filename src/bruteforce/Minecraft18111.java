@@ -233,6 +233,9 @@ public class Minecraft18111 {
             }
         }
 
+
+        //최소시간 최대높이 구하기
+
         int resultTime=result.get(0)[0];
         int resultHeight=result.get(0)[1];
         for(int q=1; q<result.size(); q++){  // 0번인덱스빼고 비교한다

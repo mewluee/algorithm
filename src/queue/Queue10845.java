@@ -53,7 +53,7 @@ public class Queue10845 {
     public void result2() throws IOException {
 
         //Queue<String> queue=new LinkedList<>();
-        int[] queue=new int[]{};
+        int[] queue=new int[10000];
 //        System.out.println(Arrays.toString(queue));
 
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
