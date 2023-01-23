@@ -1,10 +1,13 @@
+package bfs;
 
 import java.io.*;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
-public class Main {
+public class Cabbage1012 {
+    private String site="https://www.acmicpc.net/problem/1012";
 
-    public static void main(String[] args) throws IOException {
+    public void result() throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -103,7 +106,6 @@ public class Main {
         }
 
         bw.close();
-
 
     }
 }
