@@ -8,6 +8,60 @@ public class CuttingWood2805 {
 
     private String site="https://www.acmicpc.net/problem/2805";
 
+    public static int count=0;
+
+    public void result2() throws IOException{
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
+
+        String[] strarr=br.readLine().split(" ");
+        int N=Integer.parseInt(strarr[0]);//나무의 수
+        int M=Integer.parseInt(strarr[1]);//나무의 길이
+
+        String[] strtrees=br.readLine().split(" "); //나무들의 높이
+
+        //나무의 수가 1이면 그냐앙ㅇ~~~ 바로처리!
+        if(N==1) {
+            if(M==Integer.parseInt(strtrees[0])) bw.write(Integer.toString(M));
+            else bw.write(Integer.toString(Integer.parseInt(strtrees[0])-M));
+            bw.close();
+            return;
+        }
+
+        int[] intTrees=new int[strtrees.length];
+        int min=0;
+        int max=0;
+        for(int n=0; n<strtrees.length; n++){
+            intTrees[n]=Integer.parseInt(strtrees[n]);
+            if(intTrees[n]>max) max=intTrees[n];
+        }
+
+        bw.write(Integer.toString(max)+", "+Integer.toString(min));
+        while(min<max){
+            int mid=(min+max)/2;
+            long sum=0;
+            for(int i=0; i<intTrees.length; i++){
+
+                int one=intTrees[i]-mid;
+                if(one>0) sum=sum+one;
+
+            }
+            //lower랑 upper중에 뭘 써야하는 걸까?
+            //적어도 M의 나무를 집에 가져가기 위해 절단기에 설정할 수 있는 높이의 최대값..
+            //즉 이상. 그러면 lower!
+            if(M<=sum){
+                max=mid;
+            }else{
+                min=mid+1;
+            }
+        }
+
+        bw.write(max);
+        bw.close();
+
+
+
+    }
     public void result() throws IOException {
 
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
@@ -19,6 +73,7 @@ public class CuttingWood2805 {
 
         String[] strtrees=br.readLine().split(" "); //나무들의 높이
 
+        //나무의 수가 1이면 그냐앙ㅇ~~~ 바로처리!
         if(N==1) {
             if(M==Integer.parseInt(strtrees[0])) bw.write(Integer.toString(M));
             else bw.write(Integer.toString(Integer.parseInt(strtrees[0])-M));
@@ -50,15 +105,18 @@ public class CuttingWood2805 {
             if(intTrees[n]>max) max=intTrees[n];
         }
 
-        int result=bst(M, max-(M/2),intTrees);
+        int result=bst(0,max,M,intTrees);
 
         bw.write(Integer.toString(result));
         bw.close();
 
     }
 
-    public static int bst(int M, int Height,int[] trees){
+    public static int bst(int start, int end, int find,int[] trees){
 
+        count++;
+        System.out.println("count:"+count);
+        int Height=(start+end)/2;
         int sum=0;
         for(int i=0; i<trees.length; i++){
             int one=trees[i]-Height;
@@ -68,13 +126,15 @@ public class CuttingWood2805 {
 
         //System.out.println("sum:"+sum+" H:"+Height+" M:"+M);
 
-        if(sum==M) return Height;
-        else if(sum>M) return bst(M, Height+1, trees);
-        else return bst(M, Height-1, trees);
+        if(sum==find) return Height;
+        else if(sum>find) return bst(Height+1,end,find, trees); //sum값이 크다는건 높이를 올려서 잘리는 통나무의 길이를 줄여야함.
+        else return bst(start,Height-1,find, trees);
 
     }
 
 
+
+    //브루트포스 사용해서 했었음.
     public void badCode() throws IOException {
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));

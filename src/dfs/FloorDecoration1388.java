@@ -32,11 +32,11 @@ public class FloorDecoration1388 {
                 if(!visited[n][m]){ //false면 실행됨
 
                     count++;
+
                     if(bottom[n][m]=='-'){ //오른쪽으로 쭉 검사!
                         //count++;
                         for(int i=m+1; i<M; i++){
                             if(bottom[n][i]=='-'&&!visited[n][i]) visited[n][i]=true;
-
                             else break;
                         }
                     }else{

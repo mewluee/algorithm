@@ -1,68 +1,85 @@
 
+
+import binarysearch.CuttingWood2805;
+
 import java.io.*;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        String[] strarr=br.readLine().split(" ");
+        int N=Integer.parseInt(strarr[0]);//나무의 수
+        int M=Integer.parseInt(strarr[1]);//나무의 길이
 
-        int K = Integer.parseInt(br.readLine()); //1m당 참외 개수
-        int[][] sides=new int[6][2];
+        String[] strtrees=br.readLine().split(" "); //나무들의 높이
 
-        for(int i=0; i<6; i++){ //육각형 (6번의 변 입력받음)
-            String[] strarr=br.readLine().split(" ");
-            int N = Integer.parseInt(strarr[0]); // 변의 방향 동1(오른) 서2(왼) 남3(아래) 북4(위)
-            int M = Integer.parseInt(strarr[1]); // 변의 길이
-            sides[i]=new int[]{N, M};
+        //나무의 수가 1이면 그냐앙ㅇ~~~ 바로처리!
+        if(N==1) {
+            if(M==Integer.parseInt(strtrees[0])) bw.write(Integer.toString(M));
+            else bw.write(Integer.toString(Integer.parseInt(strtrees[0])-M));
+            bw.close();
+            return;
         }
 
-        //System.out.println(Arrays.deepToString(sides));
+        int[] intTrees=new int[strtrees.length];
+        int min=0;
+        int max=0;
+        for(int n=0; n<strtrees.length; n++){
+            intTrees[n]=Integer.parseInt(strtrees[n]);
+            if(intTrees[n]>max) max=intTrees[n];
+        }
 
-        //빼야하는 사각형의 특징
-        //해당 변은 두번 반복해서 나옴.
-        //조건1) -2(앞) 혹은 +2(뒤) 인덱스에 똑같은 변이 있음.
-        //조건1 만족시 조건2) 내 앞뒤-1+1로 똑같은 변(나랑 다른 숫자)이면 >> 현재 변 선택(곱해서 빼야할 작은 변임)
-        //조건1 불만족시) 뺴야할 큰 변임.
+        bw.write(Integer.toString(max)+", "+Integer.toString(min)+"\n");
+        while(min<max){
+            bw.write("min:"+Integer.toString(min)+", max:"+Integer.toString(max)+"\n");
+            int mid=(min+max)/2;
+            long sum=0;
+            for(int i=0; i<intTrees.length; i++){
 
-        int[] big=new int[2];
-        int[] small=new int[2];
+                int one=intTrees[i]-mid;
+                if(one>0) sum=sum+one;
 
-        for(int i=0;i<6; i++){
-            int up2=i-2;
-            int down2=i+2;
-
-            if(up2<0) up2=up2+6;
-            if(down2>=6) down2=down2-6;
-
-            if(sides[i][0]==sides[up2][0] || sides[i][0]==sides[down2][0]){ // 작은변
-                int up1=i-1;
-                int down1=i+1;
-
-                if(up1<0) up1=up1+6;
-                if(down1>=6) down1=down1-6;
-
-                if(sides[up1][0]==sides[down1][0]){ //빼야하는 작은변
-                    if(small[0]==0) small[0]=sides[i][1]; //그냥 배열에 넣을때 아예 비어있으면 제일 처음에 넣기.
-                    else small[1]=sides[i][1];
-                    //System.out.println("small"+Arrays.toString(small));
-
-                }
-            }else{ // 큰변
-                if(big[0]==0) big[0]=sides[i][1]; //그냥 배열에 넣을때 아예 비어있으면 제일 처음에 넣기.
-                else big[1]=sides[i][1];
-                //System.out.println("big"+Arrays.toString(big));
             }
+
+            bw.write("mid:"+Integer.toString(mid)+" sum:"+Long.toString(sum)+"\n");
+
+            //lower랑 upper중에 뭘 써야하는 걸까?
+            //적어도 M의 나무를 집에 가져가기 위해 절단기에 설정할 수 있는 높이의 최대값..
+            //즉 이상. 그러면 lower!
+            /*if(M>=sum){//mid일때 구한 sum이 M보다 크니까 상한값을 낮춰야함.>>mid일때 구한 sum이 M보다 크니까 mid값을 올리기 위해서는 하한값을 올려야함.
+                //내가 쓴 코드   if(M<=sum)
+                //이렇게 했더니 SUM값이 계속 커져서 MAX값이 자꾸 낮아지게됨.
+                //MAX값이 낮아지니까 SUM은 더 커짐.계에속.
+                //수정된 코드  M>=sum
+                //자 이걸 해석해보자...음...
+                //코드들과 다른점이 있다면 기준점이 다른 느낌?
+                //sum값들 중
+                //max값이 어느순간 고정되고, 그 뒤로는 계속 min값을 올려서 max값까지 끌고올리고 종료가 됨.
+
+                max=mid;
+            }else{
+                min=mid+1;
+            }*/
+            if(M<=sum){
+                min=mid+1;
+            }else{
+                max=mid;
+            }
+            //이렇게 코드짜니까 여기선 min값을 어느순간 고정시키고 max값을 계속 낮추게됨.
+            //이땐 내가 구한 mid값에서 +1한 min값이 고정되고 max가 min값까지 내려가서 반복문이 종료하게 됨으로.
+            //내가 max나 min값을 출력할 때 -1해야 그때의 mid값을 반환할 수 있다.
+
         }
 
-        int bigSquare=big[0]*big[1];
-        int smallSquare=small[0]*small[1];
-        //System.out.println(bigSquare+", "+smallSquare);
-        int hexagon=bigSquare-smallSquare;
-
-        bw.write(Integer.toString(hexagon*K));
+        bw.write(Integer.toString(max));
         bw.close();
 
+
+
     }
+
+
 }
