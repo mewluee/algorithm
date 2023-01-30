@@ -9,6 +9,42 @@ public class CuttingLANcable1654 {
 
     private String site="https://www.acmicpc.net/problem/1654";
 
+    public void result2() throws IOException {
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer stt=new StringTokenizer(br.readLine()," ");
+        //StringTokenizer는 한줄마다 만들면된다.
+
+        int K=Integer.parseInt(stt.nextToken()); // 갖고있는 랜선의 개수 K
+        int N=Integer.parseInt(stt.nextToken()); // 필요한 랜선의 개수 N
+
+        int[] lans=new int[K];
+        long min=0;
+        long max=0;
+        for(int k=0; k<K; k++){
+            lans[k]=Integer.parseInt(br.readLine());
+            if(lans[k]>max) max=lans[k]; //max값도 갱신해줌.
+        }
+
+        max=max+1;
+
+        while(min<max){
+            long sum=0;
+            long mid=(min+max)/2;
+            for(int k=0; k<K; k++){
+                sum=sum+lans[k]/mid;
+            }
+
+            if(N<=sum) min=mid+1;
+            else max=mid;
+
+        }
+
+        System.out.println(min-1);
+        br.close();
+
+
+    }
     public void result() throws IOException {
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
 
@@ -19,7 +55,7 @@ public class CuttingLANcable1654 {
         int N=Integer.parseInt(stt.nextToken()); // 필요한 랜선의 개수 N
 
         int[] lans=new int[K];
-        long min=1; //1부터 시작함.사실 이유는 잘 모르겠음...질문게시판보니까 1부터 시작하래..
+        long min=0; //1부터 시작함.사실 이유는 잘 모르겠음...질문게시판보니까 1부터 시작하래..
         long max=0;
         //boolean allSame=true;
         for(int k=0; k<K; k++){
@@ -29,6 +65,9 @@ public class CuttingLANcable1654 {
         }
 
         max=max+1;
+        // 4 4
+        // 10 10 10 10  >> 0 > 1
+
 
       /*  if(allSame){
             System.out.println(lans[0]);
