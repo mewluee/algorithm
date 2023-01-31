@@ -216,12 +216,6 @@ public class CuttingWood2805 {
 
         String[] strtrees=br.readLine().split(" "); //나무들의 높이
 
-        if(N==1) {
-            if(M==Integer.parseInt(strtrees[0])) bw.write(Integer.toString(M));
-            else bw.write(Integer.toString(Integer.parseInt(strtrees[0])-M));
-            bw.close();
-            return;
-        }
 
         //브루트 포스 알고리즘 써야할거 같음
         //그런데 범위를 어떻게 줄일까?
