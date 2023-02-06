@@ -1,11 +1,14 @@
+package tree;
 
 import java.io.*;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
 
-public class Main {
+public class PhoneNumberList5052 {
 
+    private String str="https://www.acmicpc.net/problem/5052";
 
-    static class Tree{
+    class Tree{
         Tree left;
         String value;
         Tree right;
@@ -17,9 +20,8 @@ public class Main {
         }
     }
 
-
-    public static void main(String[] args) throws IOException {
-       /* //트리사용하래.
+    public void result() throws IOException {
+        //트리사용하래.
         //Tree는 자식노드의 개수가 n개 가능
         //이진트리는 자식노드의 개수가 2개 고정
         //이진트리 사용해야지안흥ㄹ까..?
@@ -48,6 +50,7 @@ public class Main {
         //안됌..분리해야함..
 
 
+
         for(int i=0; i<test_case; i++){
 
             boolean isConsistency=true; //일관성있다는건 중복이 없다는 거
@@ -61,7 +64,7 @@ public class Main {
 
             //System.out.println("전:"+Arrays.toString(phonebook));
             //길이가 짧은 것부터 앞으로 정렬하자.
-            Arrays.sort(phonebook, Comparator.comparingInt(String::length));
+            Arrays.sort(phonebook, (o1, o2)->o1.length()<o2.length()? -1 : 1);
             //-1 오름차순
             //System.out.println("후:"+Arrays.toString(phonebook));
 
@@ -69,7 +72,7 @@ public class Main {
 
             for(int n=0; n<N; n++){
                 //System.out.println(">>n:"+n);
-                String str=phonebook[n]; //정렬된 배열에서 하나씩 가져와서
+                String str=phonebook[n];
 
                 if(n==0){ //제일 첫번째 값은 루트로 만들어주기~
                     root.left=new Tree(null, "", null);
@@ -100,103 +103,14 @@ public class Main {
 
 
         }
-        bw.close();*/
+        bw.close();
 
-
-
-        //문자열 잘라내기 2866
-        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
-
-        StringTokenizer stringTokenizer=new StringTokenizer(br.readLine()," ");
-
-        int R=Integer.parseInt(stringTokenizer.nextToken()); //행의 개수
-        int C=Integer.parseInt(stringTokenizer.nextToken()); //열의 개수
-
-        String[] rowStrs=new String[R];
-        int count=0;
-
-        for(int r=0; r<R; r++){
-            rowStrs[r]=br.readLine();
-        }
-
-        while(rowStrs.length>0){
-
-            //System.out.println(">>rowStrs1:"+Arrays.toString(rowStrs));
-
-            //첫줄없애!
-            rowStrs=Arrays.copyOfRange(rowStrs,1,rowStrs.length);
-            R--;
-
-            //colStrs 만드러!
-            String[] colStrs=new String[C];
-            for(int c=0; c<C; c++){
-                colStrs[c]="";
-                for(int r=0; r<R; r++){
-                    colStrs[c]=colStrs[c]+rowStrs[r].charAt(c);
-                }
-            }
-
-            //System.out.println("corStrs:"+Arrays.toString(colStrs));
-
-            //밑에 메서드 호출함.
-            if(checkDoubleStrings(colStrs)){ //중복이면 count출력하고 멈춘다.
-                System.out.println(count);
-                return;
-            }else{
-                count++;
-                //System.out.println(">>rowStrs2:"+Arrays.toString(rowStrs));
-
-            }
-
-        }
-
-        System.out.println(count);
-
-        //모냐...해시를 사용한 집합과 맵..???으으으ㅜㅇㅇ...으웅ㅇ...
-        //이거 모르게꼬..
 
 
     }
 
-    //중복하면 true반환
-    public static boolean checkDoubleStrings(String[] strs){
 
-        Arrays.sort(strs);
-
-        for(int i=0; i<strs.length; i++){
-            //이분탐색 구현
-
-            int min=0;
-            int max=strs.length;
-            while(min<max){
-                int mid=(min+max)/2;
-
-                //i가 찾는 값 mid가 구한값
-                if(strs[i].compareTo(strs[mid])>0){ //i-mid니까 양수면 i가 더 큰거임. mid값을 올려야함. min증가!
-                    min=mid+1;
-                }else if(i!=mid && strs[i].equals(strs[mid])){
-                    return true;
-                }else{
-                    max=mid-1;
-                }
-            }
-        }
-
-       /* for(int n=0; n<strs.length-1; n++){
-            for(int m=n+1; m<strs.length; m++){
-                if(strs[n].equals(strs[m])) {
-                    //System.out.println("n, m: "+strs[n]+", "+strs[m]);
-                    return true;
-                }
-            }
-        }*/
-
-        return false;
-    }
-
-
-    public static int searchTree(Tree root, String str){
+    public int searchTree(Tree root, String str){
         String rootStr=root.value;
         //System.out.println("[함수진입] root.value="+rootStr+" , 찾는값:"+str);
 
@@ -227,7 +141,7 @@ public class Main {
         return 0;
     }
 
-    public static int inputTree(Tree root, String str){
+    public int inputTree(Tree root, String str){
         String rootStr=root.value;
 
         //System.out.println("[함수진입2] root.value="+rootStr+" , 찾는값:"+str);
@@ -261,7 +175,117 @@ public class Main {
 
     }
 
+    public void bad() throws IOException {
 
+        //문제 분석
+        //일관성 있다는 건 한 번호가 다른 번호의 접두어인 경우가 아닌 경우.
+        //문자열을 비교할때는 제일 긴 문자열을 가지고 비교하면 됌.
+        //제일 긴 문자열이 아닌 것들은 해쉬셋에 저장하면될거같음.
+        //조건1) 문자열 동일해야함.
+
+        //조금 더 과정을
+        //(1) 입력받을때마다 해쉬셋에 검색할까? >그럼 맥스값할필요없음!
+        //(2) 아님 맥스값이 중복일때마다 처리하는 걸 따로할까?
+
+        //일단 2번 방법으로 구현해보기. >> X
+
+       /* BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
+
+
+        int test_case=Integer.parseInt(br.readLine());
+
+
+        for(int i=0; i<test_case; i++){
+
+            int maxindex=0;
+            int maxlength=0;
+
+            int N=Integer.parseInt(br.readLine());
+            ArrayList<Integer> maxIndexsList=new ArrayList<Integer>();
+
+            strArr=new String[N];
+
+            //가장 긴 문자열 지정
+            for(int n=0; n<N; n++){
+                String str=br.readLine();
+                strArr[n]=str;
+                if(str.length()>maxlength) {
+                    maxlength=str.length();
+                    maxIndexsList.clear();
+                    maxIndexsList.add(n);
+                }else if(str.length()==maxlength){
+                    maxlength=str.length();
+                    maxIndexsList.add(n);
+                }
+            }
+            System.out.println("긴문자열들 인덱스 확인:"+Arrays.toString(maxIndexsList.toArray()));
+
+            //나머지는 집합에 저장
+            hashSet=new HashSet<>(); //멤버필드로 뽑아내서 여기서 새로 생성.
+            for(int n=0; n<N; n++){
+                for(int m=0; m<maxIndexsList.size(); m++){
+                    if(maxIndexsList.get(m)==n){ //긴 문자열들 인덱스 중 하나면 멈춤.
+                        break;
+                    }else if(m==maxIndexsList.size()-1){ //다 봤는데 아니면 집합에 추가함.
+                        hashSet.add(strArr[n]);
+                    }
+                }
+            }
+
+           // System.out.println("가장 긴문자열:"+strArr[maxindex]);
+            System.out.println(Arrays.toString(hashSet.toArray()));
+
+            //가장 긴 문자열을 기준으로 해쉬셋에 저장되어있는지 확인.
+
+
+        }
+        bw.close();*/
+
+        // 1번 방법으로 구현해보기 (시간 초과뜰거같은뎅 힝)
+
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
+
+
+        int test_case=Integer.parseInt(br.readLine());
+
+        for(int i=0; i<test_case; i++) {
+
+
+            boolean isConsistency=true; //일관성있다는건 중복이 없다는 거
+
+            int N = Integer.parseInt(br.readLine());
+            HashSet<String> hashSet=new HashSet<String>();
+
+            for (int n = 0; n < N; n++) {
+                String str = br.readLine();
+                //입력이 들어올때마다 집합에 저장하기.
+                //i가 0일때는 집합에 저장만 하기.
+                //i가 0이 아닐때는 입력이 들어올때마다 문자열을 substring으로 잘라서 집합에 있는지 검사.
+                if (n != 0) {
+                    for (int m = 0; m < str.length(); m++) {
+                        String subStr = str.substring(0, m + 1);
+                        //bw.write("subSTR:"+subStr+"\n");
+                        if (hashSet.contains(subStr)) {
+                            //bw.write("NO\n");
+                            isConsistency=false;
+                            break;
+                        }
+                    }
+
+                }
+                hashSet.add(str);
+
+            }
+            if(isConsistency) {
+                bw.write("YES\n");
+            }else{
+                bw.write("NO\n");
+            }
+        }
+        bw.close();
+    }
 
 
 }
