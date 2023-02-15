@@ -1,2 +1,6 @@
-package string_parsing;public class kmpArgorithm {
+package string_parsing;
+
+public class kmpArgorithm {
+
+
 }
