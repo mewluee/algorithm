@@ -31,11 +31,11 @@ public class RoboticVacuum14503 {
         int y = Integer.parseInt(st.nextToken());
         int direction = Integer.parseInt(st.nextToken());
 
-        int count=0;
+        int count = 0;
 
         //하나로 처리 못하는 이유(벽인지/청소된 룸인지 구분하기 위해서) 다 1로 처리해버리면 안됨! 그럼 다른 숫자를 넣을까..?
         //int[][] cleaned = new int[N][M];
-        rooms=new int[N][M];
+        rooms = new int[N][M];
         for (int n = 0; n < N; n++) {
             st = new StringTokenizer(br.readLine(), " ");
             for (int m = 0; m < M; m++) {
@@ -62,49 +62,48 @@ public class RoboticVacuum14503 {
         //순서 중요함!!!!
 
         //일단 조건문 어케할지...생각이안나니까 일단..이케하고
-        while(true){
+        while (true) {
             //System.out.println("-".repeat(10));
             //System.out.println("x,y:"+x+","+y+", direction:"+direction+", rooms:"+rooms[x][y]);
             //System.out.println("count:"+count);
-            if(rooms[x][y]==0){//청소안한방이라면.
+            if (rooms[x][y] == 0) {//청소안한방이라면.
                 //cleaned[x][y]=1; //청소시켜놓고.
-                rooms[x][y]=2; //청소표시는 숫자2로 해보자.
+                rooms[x][y] = 2; //청소표시는 숫자2로 해보자.
                 count++;
             }
 
             //주변 검색해야함.
-            if(noCleanRoomExist(x,y)){
+            if (noCleanRoomExist(x, y)) {
                 //방향 회전시키자.
-                direction=(direction+3)%4;
+                direction = (direction + 3) % 4;
                 int gx = x + dx[direction];
                 int gy = y + dy[direction];
 
-                if(1<=gx && gx<N-1 && 1<=gy && gy<M-1 && rooms[gx][gy]==0){ //direction방향으로 앞쪽칸이 청소되지 않았다면
-                    x=gx;
-                    y=gy;
+                if (1 <= gx && gx < N - 1 && 1 <= gy && gy < M - 1 && rooms[gx][gy] == 0) { //direction방향으로 앞쪽칸이 청소되지 않았다면
+                    x = gx;
+                    y = gy;
                     //갱신하고 while문 돌도록 한다.
                 }
 
-            }else{
+            } else {
                 //System.out.println("후진!!!");
                 //후진방향 설정해주자.
                 //direction은 유지한 채 후진해야함.
-                int backdirection=(direction+2)%4;
+                int backdirection = (direction + 2) % 4;
                 int gx = x + dx[backdirection];
                 int gy = y + dy[backdirection];
                 //System.out.println("gx,gy:"+gx+","+gy+", rooms:"+rooms[gx][gy]);
 
-                if(0<=gx && gx<N && 0<=gy && gy<M && rooms[gx][gy]==1){ //후진방향이 벽일경우 <-> 0이나 2일 경우는 이동하도록함.
+                if (0 <= gx && gx < N && 0 <= gy && gy < M && rooms[gx][gy] == 1) { //후진방향이 벽일경우 <-> 0이나 2일 경우는 이동하도록함.
                     //System.out.println("작동멈춰!");
                     break; // 작동 멈추기
-                }else{
+                } else {
                     //System.out.println("벽이 아니니까 이동해!");
-                    x=gx;
-                    y=gy;
+                    x = gx;
+                    y = gy;
                     //갱신하고 while문 돌도록 한다.
                 }
             }
-
 
         }
 
@@ -113,16 +112,16 @@ public class RoboticVacuum14503 {
 
     }
 
-    public static boolean noCleanRoomExist(int x,int y){
-        boolean flag=false;
+    public static boolean noCleanRoomExist(int x, int y) {
+        boolean flag = false;
 
-        for(int i=0; i<4; i++){
-            int gx=x+dx[i];
-            int gy=y+dy[i];
+        for (int i = 0; i < 4; i++) {
+            int gx = x + dx[i];
+            int gy = y + dy[i];
 
-            if(1<=x && x<N-1 && 1<=y && y<M-1){ //제일 외곽 벽을 제외한 공간.
-                if(rooms[gx][gy]==0){ //x,y를 기준으로 4방향중 하나에 공간이 있다!
-                    flag=true;
+            if (1 <= x && x < N - 1 && 1 <= y && y < M - 1) { //제일 외곽 벽을 제외한 공간.
+                if (rooms[gx][gy] == 0) { //x,y를 기준으로 4방향중 하나에 공간이 있다!
+                    flag = true;
                     break;
                 }
             }

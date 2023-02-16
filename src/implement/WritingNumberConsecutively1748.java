@@ -54,6 +54,9 @@ public class WritingNumberConsecutively1748 {
         return (((double)num)-Math.pow(10,len-1)+1)*len;
     }
 
+
+
+
     //다른사람 푼거1
     public static void solution() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -81,11 +84,16 @@ public class WritingNumberConsecutively1748 {
 
         int n = Integer.parseInt(br.readLine());
 
+        // n이 120이라고하면
         // n - 1 + 1-> 1이상 n이하 까지 1의 자리수를 가진 수의 개수
         // n - 10 + 1-> 1이상 n이하 까지 10의 자리수를 가진 수의 개수
         // n - 100 + 1-> 1이상 n이하 까지 100의 자리수를 가진 수의 개수
         for(int i =1; i <= n; i*=10){
             answer += n - i + 1;
+            //n=120이면
+            //i=1일때 120-1+1=120 // 120숫자의 1의 자리들의 숫자 개수셈.
+            //i=10일때 120-10+1=111 // 10, 11, 12, 13 ,,,, 120까지 개수셈. 십의 자리숫자만.
+            //i=100일때 120-100+1=21 // 즉 100, 101, 102 ... 120까지 개수 셈>> 백의 자리수 세기.
         }
         System.out.println(answer);
     }
@@ -101,8 +109,12 @@ public class WritingNumberConsecutively1748 {
         if (num.length() > 1) {
             sb.append(9);
             numLength.append(1);
+            System.out.println(sb+","+numLength);
             for (int i = 0; i < num.length() - 1; i++) {
                 count += Long.parseLong(sb.toString()) * (i + 1);
+                //sb:9->90->900
+                //num:1->10->100
+                //count:9+180+2700..
                 sb.append(0);
                 numLength.append(0);
             }
