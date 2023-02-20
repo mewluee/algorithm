@@ -33,6 +33,39 @@ public class ChickenDelivery15686 {
         }
     }
 
+
+    //이건 for문으로 조합을 만들어서 모든 조합마다 도시의 치킨거리를 구해볼까? 이건 시간초과가 뜬다는 건가?
+    public static void result3() throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+
+        streets = new int[N][N];
+        person = new ArrayList<>();
+        chicken = new ArrayList<>();
+        selected=new Stack<>();
+
+        for (int n = 0; n < N; n++) {
+            st = new StringTokenizer(br.readLine(), " ");
+            for (int n2 = 0; n2 < N; n2++) {
+                streets[n][n2] = Integer.parseInt(st.nextToken());
+
+                if(streets[n][n2]==1){
+                    person.add(new Point(n, n2)); // 일단 person 리스트에 담는다.
+                } else if (streets[n][n2] == 2) {
+                    chicken.add(new Point(n, n2)); // 일단 chicken 리스트에 담는다.
+                }
+            }
+        }
+
+        //아 for문 구현하려고 보니까.. M의 개수에 따라 for문의 개수가 달라짐...오마이갓...홀뤼..몰뤼..
+        //깊이를 몰라서 재귀를 쓰는 거구나..호..고곡고고!!대박!
+        //그래서 재귀를 탈출해야하는 count가 필요한 것이다. 그래서...매개변수로 자꾸 카운트를 넣어주는 것이었어..
+        //어 근데 사실상 재귀를 탈출한다고는 좀 보기 힘들거같은뎅..???오이잉ㅇ~~?~??
+    }
+
     //이건 boolean 배열을 공부하고 내가 안!보!고! 직접 스택으로(다른방법) 구현한 것.
     public static void result2() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -185,12 +218,9 @@ public class ChickenDelivery15686 {
         //백트래킹
         //이 함수가 호출될때마다 입력값기준으로 모든 치킨집을.. open을 트루로만든다구...그리고 재귀함수호출해서 1증가시킨다..으음...
         for (int i = start; i < chicken.size(); i++) {
-
             //인덱스 start부터 끝까지 치킨집을 순차적으로 접근을 하는데
-
             //일단 트루로 만들고,
             open[i] = true; //어떤사람은 여기가 스택으로 구현되서 push
-
             DFS(i + 1, cnt + 1);
             //카운트가 3개가 되는 순간 치킨거리를 검사하고..
             //그리고 false로 만들어버림
@@ -210,8 +240,6 @@ public class ChickenDelivery15686 {
             //                                                                                   ㄴ> 0,1,2,3,4,{(m,m+1)} i가 m이 되는순간 더이상 재귀호출이 되지않고 끝남. 반환값이 void라서 그냥 끝!
             //
             //                                          ㄴ> 0,(2,1) 실행시 0,2,3 / 0,2,4 / 0,2,5 ... 0,2,m
-
-
             open[i] = false; //스택으로 구현되면 pop
         }
 
