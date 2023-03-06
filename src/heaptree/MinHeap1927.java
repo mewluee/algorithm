@@ -10,6 +10,7 @@ public class MinHeap1927 {
 
 
     static int[] result=new int[0];
+    // []
 
     //따로 클래스 만들 필요는 없는 듯...?
     //값이 제일 작을수록 가치있는 거니까..이것만 제대로 하면..
