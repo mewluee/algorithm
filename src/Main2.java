@@ -150,7 +150,7 @@ public class Main2 {
         }
 
         System.out.println(">>>>solutionAnswer:"+Arrays.toString(solutionAnswer));
-
+jijijijji
 
 
     }
