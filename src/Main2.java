@@ -6,9 +6,11 @@ import java.util.Comparator;
 
 public class Main2 {
 
+
+
     public static void main(String[] args) throws IOException {
-        solution(new int[][]{{40, 10000}, {25, 10000}}, new int[]{7000, 9000});
-        solution(new int[][]{{40, 2900}, {23, 10000},{11,5200},{5,5900},{40,3100},{27,9200},{32,6900}}, new int[]{1300, 1500,1600,4900});
+        System.out.println("경우1:" + Arrays.toString(solution(new int[][]{{40, 10000}, {25, 10000}}, new int[]{7000, 9000})));
+        System.out.println("경우2:" + Arrays.toString(solution(new int[][]{{40, 2900}, {23, 10000}, {11, 5200}, {5, 5900}, {40, 3100}, {27, 9200}, {32, 6900}}, new int[]{1300, 1500, 1600, 4900})));
     }
 
     // 1 유저 - 4 이모티콘
@@ -39,9 +41,15 @@ public class Main2 {
 
     // 어떤 자료구조를 써야 효율적일까?
 
+    static int[] solutionAnswer;
+    static int[] fixedEmoticons;
+
+    static int[][] fixedUsers;
 
     public static int[] solution(int[][] users, int[] emoticons) {
-        int[] answer = {};
+        solutionAnswer = new int[2];
+        fixedEmoticons = emoticons;
+        fixedUsers = users;
 
         //반복문을 돌면서
         //순열로 만든 비율 배열표로 모든 손님 배열을 순회해서 계산한다.
@@ -52,22 +60,98 @@ public class Main2 {
         //만들때마다 검사하면 되는거아냐? 도대체 어디서 DFS가..?
         //일단 DFS없는 상황에서 만들어보자.>> ㅋㅋ불가능! 결과적으로 순열만들때 DFS써야한다.왜냐? 밑에있음.
 
-        int[] discountRates = new int[emoticons.length];
         int[] fixedDiscountRate=new int[]{10, 20, 30, 40};
+        getDiscountRates(fixedDiscountRate, emoticons.length, new int[0]);
 
-
-        return answer;
+        return solutionAnswer;
     }
 
-    public static int[] getDiscountRates(int[] emoticons, int[] visited){
-        //1. 순열 만들기 (주의, 조합이 아님, 순서도 식별해야한다)
-        //이모티콘 개수는 1~7
-        //깊이를 입력받으니까 재귀를 써야한다. 자자 visited도 만들어보실까! 이건 밖에서 입력받아야한다.
-        //각 재귀때마다 배열의 한 칸을 채워야한다. 여기서 visited가 쓰인다....?
-        //어왜..?
-        //중복도 가능하잖아 사실...어라..?
-        //내가 순열과 경우의 수를 헷갈린거같아.
+    public static void getDiscountRates(int[] fixedDiscountRate, int count, int[] answerRate){
 
-        //어떻게 녹여야할지 모르겠어...
+        //순열만들기
+
+        int[] newAnswer;
+        //System.out.println("count:"+count);
+
+        if (count <= 0) {
+            System.out.println("e:"+Arrays.toString(answerRate));
+            getAnswer(answerRate);
+
+        }else{
+            newAnswer = new int[answerRate.length + 1];
+            //System.out.println(newAnswer.length);
+            System.arraycopy(answerRate, 0, newAnswer, 0, answerRate.length);
+            //System.out.println(newAnswer.length);
+
+            for (int i = 0; i < fixedDiscountRate.length; i++) {
+
+
+                newAnswer[newAnswer.length-1]=fixedDiscountRate[i];
+                getDiscountRates(fixedDiscountRate, count - 1, newAnswer);
+                //System.out.println("newAnswer:"+Arrays.toString(newAnswer));
+            }
+        }
+
+    }
+
+    public static void getAnswer(int[] discountRate){
+        int[] subAnswer=new int[2];
+
+        //모든 인원들을 가져온 비율로 검사한다.
+        for (int i = 0; i < fixedUsers.length; i++) {
+            int personalTotalMoney=0;
+            //사람당 총 금액
+
+            //이모티콘 개수만큼 검사 필요하다 = 이모티콘 개수 = 비율 개수
+            for (int j = 0; j < fixedEmoticons.length; j++) {
+
+                //각 개인의 비율 <= 할인율이 크다면 사야지! 그래서 할인율이 적용된 이모티콘 가격 계산
+                if (fixedUsers[i][0] <= discountRate[j]) {
+                    double personalEmoticonMoney = fixedEmoticons[j] * (1 - (discountRate[j] / (double)100));
+                    personalTotalMoney+=personalEmoticonMoney;
+                    //해당 이모티콘을 샀다고 가정 그래서 누적해서 저장한다.
+                    //System.out.println("personaltotalmoney:"+personalTotalMoney);
+                }
+            }
+            System.out.println(i+"번째 손님 이모티콘 총 구매비용:"+personalTotalMoney);
+
+            //총 이모티콘 구매 내역이 해당 손님의 가격보다 클때
+            if (personalTotalMoney > fixedUsers[i][1]) {
+                subAnswer[0]++;
+
+            } else {
+                subAnswer[1]+=personalTotalMoney;
+            }
+
+
+        }
+        System.out.println("-".repeat(30));
+        System.out.println("subAnswer:"+Arrays.toString(subAnswer));
+        System.out.println(">>>>subAnswer:"+Arrays.toString(subAnswer));
+//        if (subAnswer[0] >= solutionAnswer[0]) {
+//            solutionAnswer[0]=subAnswer[0];
+//            if (subAnswer[1] > solutionAnswer[1]) {
+//                solutionAnswer[1]=subAnswer[1];
+//            }
+//        }else{
+//            if (subAnswer[1] > solutionAnswer[1]) {
+//                solutionAnswer[1]=subAnswer[1];
+//            }
+//        }
+
+        if (subAnswer[0] > solutionAnswer[0]) {
+            solutionAnswer[0] = subAnswer[0];
+            solutionAnswer[1] = subAnswer[1];
+        }
+        else if(subAnswer[0] == solutionAnswer[0]) {
+            if(subAnswer[1] > solutionAnswer[1]) {
+                solutionAnswer[1] = subAnswer[1];
+            }
+        }
+
+        System.out.println(">>>>solutionAnswer:"+Arrays.toString(solutionAnswer));
+
+
+
     }
 }
