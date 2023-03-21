@@ -6,6 +6,7 @@ public class Main2 {
 
     public static void main(String[] args) throws IOException {
 
+
         System.out.println("경우1:"+solution("100-200*300-500+20"));
         System.out.println("경우2:"+solution("50*6-3*2"));
         System.out.println("경우3:"+solution("100-200*300*400"));
