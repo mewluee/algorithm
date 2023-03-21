@@ -14,36 +14,15 @@ public class 택배배달과수거하기 {
     public static long solution(int cap, int n, int[] deliveries, int[] pickups) {
         long answer = 0;
 
-        //먼집부터 배달하면서, 돌아오는 길에 최대한 많이 수거하는게...
-        //그런데 이 수거도 먼집부터 한다.
-        //배달,수거할게 없으면 멀리갈 이유가 없거둔..
 
-        //인덱스+1 가야하는 거리
-
-        //그런데 더 좋은건 멀리가는 건 좋지만,
-        //오고 갈때 공간을 꽉꽉 채워서 가기!
-
-
-        //BFS써야하나여..?
-        //안쓰고 가능..?
-
-
-        //일단 안쓰고 해봐
-
-        //long m=n;
-        //드라마틱한 변화는 없네..?
         while (!isDone2(deliveries, pickups,n)) {
 
-            //배달 거리 계산
-            //개선 전
-            //n=(int)Math.max(getDeliveryLoad(cap, n, deliveries), getPickupLoad(cap, n, pickups));
-            //개선 후
+
+
             n = (int) Math.max(getLoad(cap, n, deliveries), getLoad(cap, n, pickups));
             answer=answer+n*2;
 
-
         }
-
 
         return answer;
     }
@@ -64,7 +43,41 @@ public class 택배배달과수거하기 {
         return true;
     }
 
-    //이 부분이 좋지 않다.
+    public static long getLoad(int cap, int n, int[] arrs) {
+        long load=0;
+
+        /*for (int i = n-1; i >= 0; i--) {
+            if(arrs[i]!=0 && cap>0){
+                load=Math.max(load,i+1);
+                if(cap>=arrs[i]){
+                    cap=cap-arrs[i];
+                    arrs[i]=0;
+                }else{
+                    arrs[i]=arrs[i]-cap;
+                    cap=0;
+                }
+                if(cap==0) break;
+            }
+        }*/
+
+        for (int i = n-1; i >= 0; i--) {
+            if(arrs[i]!=0){
+                load=Math.max(load,i+1);
+                if(cap>arrs[i]){
+                    cap=cap-arrs[i];
+                    arrs[i]=0;
+                }else{
+                    arrs[i]=arrs[i]-cap;
+                    cap=0;
+                    break;
+                }
+            }
+        }
+        return load;
+    }
+
+
+    /*//이 부분이 좋지 않다.
     //다른사람들은 포인터로 굳이 안돌아가게 처리했는데
     //나는 매번 반복문마다 다시 다 처음부터 검사해서 시간이 더 소요된다.
     //이부분도 나는 n으로 처리해보자.
@@ -82,26 +95,7 @@ public class 택배배달과수거하기 {
         }
 
         return true;
-    }
-
-    public static long getLoad(int cap, int n, int[] arrs) {
-        long load=0;
-
-        for (int i = n-1; i >= 0; i--) {
-            if(arrs[i]!=0 && cap>0){
-                load=Math.max(load,i+1);
-                if(cap>=arrs[i]){
-                    cap=cap-arrs[i];
-                    arrs[i]=0;
-                }else{
-                    arrs[i]=arrs[i]-cap;
-                    cap=0;
-                }
-                if(cap==0) break;
-            }
-        }
-        return load;
-    }
+    }*/
 
 
     //와 이부분 어처피 겹쳐서 하나의 메서드로 처리해버리네.

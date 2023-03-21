@@ -1,73 +1,201 @@
-import java.io.BufferedReader;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.*;
 
 public class Main2 {
 
     public static void main(String[] args) throws IOException {
-        solution(new int[][]{{40, 10000}, {25, 10000}}, new int[]{7000, 9000});
-        solution(new int[][]{{40, 2900}, {23, 10000},{11,5200},{5,5900},{40,3100},{27,9200},{32,6900}}, new int[]{1300, 1500,1600,4900});
+
+        System.out.println("경우1:"+solution("100-200*300-500+20"));
+        System.out.println("경우2:"+solution("50*6-3*2"));
+        System.out.println("경우3:"+solution("100-200*300*400"));
+
+
     }
+    //연산자의 우선순위 자유롭게 재정의 > 가장 큰 숫자 만들기
+    //동일한 순위는 안된다.
+    //음수값 > 절대값 > 제일 큰 수
+    //입력값은 3~100 문자열
+    //최소 피연산자+연산자+피연산자
+    //올바른 중위표기법
 
-    // 1 유저 - 4 이모티콘
-    // 유저의 비율/돈 - 이모티콘 정가
-    //
-    // 목적
-    // 1. 이모티콘 플러스 서비스 가입자 수 최대
-    // 2. 이모티콘 판매액 최대
+    //피연산자 0~999
+    //음수 X 양수만
+    //최종 결과값의 절대값은 2^63-1 (long타입~)
 
-    // 이모티콘 플러스 서비스 가입자 수가 많으려면, 유저가 이모티콘을 많이 샀을 때 비용이 초과해야 한다.
-    // 각 이모니콘마다 할인율을 다르게 해서 구매유저가 많아야한다.
-    // 그렇다고 할인율을 올려서 다 사게했다고 치자. 비용이 초과를 안해서 서비스 가입자 수가 적을 수 있다.
+    //연산문자는 3가지 + - *
+    //결국 6가지 조합
 
-    // 브루트 포스 알고리즘 > 각 이모티콘의 할인율에 따라 조합을 검사해서 1번 결과가 클 때만 답을 갱신하다.
-    // 브루트 포스 범위를 줄일 수 있는가? 범위 사용자의 비율 범위내로 조정
-    // 그럼 놓치는 값이 있는가? 모르겠음
+    //브루트포스?
+    //어떤 자료구조를 써야 시간이 단축될까? 사실 입력값은 중위표기법이지만 스택으로 하면 후위표기법으로 컴퓨터가 계산하기 쉽지 않나?
+    //연산자체에 시간이 오래걸리진 않잖아.
+    //스택으로 녹여낼수있느냐?
+    //가능한가..?
+    //일단해봐 ㅇㅇ
 
-    // 그리디 알고리즘
-    // 그때그때 욕망에 따라.....음.....
-    // 많이 구매해도 오케이 > 그럼 각 이모니콘마다 최대로 많이 사게 하면 됨. 무조건 할인율 크게 하면되는데 그러면 비용문제가 발생함.
-    // 적절하지 않은 것 같다.
+    //일단 어제 눈대중으로 봐버린...
+    static String[] operationPrioritys=new String[]{
+      "+-*",
+      "+*-",
+      "*+-",
+      "*-+",
+      "-*+",
+      "-+*"
+    };
+    public static long solution(String expression) {
+        long answer = 0;
 
-    // 놀랍게도.. 할인율은 1~40 40가지가 아니라..
-    // 10 20 30 40 >> 4가지였다.....충격이네... 문제좀 여러번 읽어야겠다.
+        //들어온 문자열을 잘라보자
+        List<String> expressionList=getExpressionList(expression);
+        answer=getAnswer(expressionList);
+        //잘랐죠? 그럼 뭘해야겠어요!?
+        //스택으로 구현해보자구용!!!!!!
 
-    // DFS BFS ?
-    // 순열이래!!
-
-    // 어떤 자료구조를 써야 효율적일까?
-
-
-    public static int[] solution(int[][] users, int[] emoticons) {
-        int[] answer = {};
-
-        //반복문을 돌면서
-        //순열로 만든 비율 배열표로 모든 손님 배열을 순회해서 계산한다.
-        //비율로 순열만들기!
-
-        //DFS라는데 어느 부분에 DFS가 적용되야 하는가.
-        //순열만들때? 순열은 그냥 만들어서 배열에 촤근촤근..?
-        //만들때마다 검사하면 되는거아냐? 도대체 어디서 DFS가..?
-        //일단 DFS없는 상황에서 만들어보자.>> ㅋㅋ불가능! 결과적으로 순열만들때 DFS써야한다.왜냐? 밑에있음.
-
-        int[] discountRates = new int[emoticons.length];
-        int[] fixedDiscountRate=new int[]{10, 20, 30, 40};
 
 
         return answer;
     }
 
-    public static int[] getDiscountRates(int[] emoticons, int[] visited){
-        //1. 순열 만들기 (주의, 조합이 아님, 순서도 식별해야한다)
-        //이모티콘 개수는 1~7
-        //깊이를 입력받으니까 재귀를 써야한다. 자자 visited도 만들어보실까! 이건 밖에서 입력받아야한다.
-        //각 재귀때마다 배열의 한 칸을 채워야한다. 여기서 visited가 쓰인다....?
-        //어왜..?
-        //중복도 가능하잖아 사실...어라..?
-        //내가 순열과 경우의 수를 헷갈린거같아.
 
-        //어떻게 녹여야할지 모르겠어...
+    //리스트? 배열? 아~ 리스트쓰자
+    public static List<String> getExpressionList(String expression) {
+
+        char[] chars = expression.toCharArray();
+        //48(0) ~ 57(9)
+        List<String> lists=new ArrayList<>();
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < chars.length; i++) {
+            if (48 <= (int) chars[i] && (int) chars[i] <= 57) {
+                sb.append(chars[i]);
+            }else{
+                //System.out.println("누적된 sb:"+sb.toString());
+                lists.add(sb.toString());
+                //리스트에 저장했으면 스트링빌더에서 없애버리고~
+                sb.delete(0, sb.length());
+                //연산자도 저장하자
+                lists.add(Character.toString(chars[i]));
+
+            }
+        }
+        lists.add(sb.toString());
+
+        //System.out.println(lists.toString());
+        return lists;
+
+    }
+
+    public static long getAnswer(List<String> expressionList){
+
+        //중위 연산자니까 스택 두개로 해야할듯.
+
+        long answer=Long.MIN_VALUE;
+        System.out.println("min_value:"+answer);
+
+        for (int j = 0; j < operationPrioritys.length; j++) {
+            System.out.println("=".repeat(40));
+
+            Stack<String> operations = new Stack<>(); //연산자(문자)
+            Stack<Long> operands = new Stack<>(); //피연산자(숫자)
+            String priority=operationPrioritys[j];
+            System.out.println("pr:"+priority);
+
+            for (int i = 0; i < expressionList.size(); i++) {
+                try {
+                    long number = Long.parseLong(expressionList.get(i));
+                    operands.push(number);
+
+                } catch (NumberFormatException ex) {
+                    //예외발생 > 연산자
+                    //System.out.println("number format exception");
+
+                    if (!operations.isEmpty()) {
+                        String topOperation = operations.peek(); //스택에 있는 연산자
+                        String presentOperation = expressionList.get(i); //현재 연산자
+
+
+                        //우선순위 비교하려고 인덱스값 가져온다. (매개변수:우선순위순열, 현재 연산자)
+                        int presentIndex=getIndex(priority, presentOperation);
+                        int topIndex=getIndex(priority, topOperation);
+
+                        System.out.println("index p, t:"+presentIndex+", "+topIndex);
+
+                        //현재 넣어야하는 연산자가 스택에 있는 연산자보다 우선순위가 높으면(인덱스값이 더 작으면)
+                        if (presentIndex<topIndex) {
+                            //피연산자에서 pop한 숫자랑 다음 인덱스의 숫자를 해당 연산자로 계산해서
+                            //결과값을 피연산자에 넣고 해당 연산자는 넣지 않는다.
+                            operands.push(calculate(presentOperation,operands.pop(),Long.parseLong(expressionList.get(++i))));
+                        } else{
+                            //현재 넣어야하는 연산자가 스택에 있는 연산자보다 우선순위가 동일하거나 우선순위가 낮으면(인덱스값이 더 크면)
+                            //밑에 연산자로 계산해야한다. 피연산자 두번 pop하구, 연산자도 pop하나해서 계산해서 새로 넣는다.
+                            long num2=operands.pop();
+                            long num1=operands.pop();
+                            operands.push(calculate(operations.pop(),num1, num2));
+                            operations.push(expressionList.get(i));
+                        }
+
+                    } /*else { //텅 비어있을때
+                        if(getIndex(priority, expressionList.get(i))==0){
+                            //제일 첫번째 우선순위면 계산해서 넣도록 해용 ^^
+                            operands.push(calculate(expressionList.get(i), operands.get(0), Long.parseLong(expressionList.get(++i))));
+                        }
+                        operations.push(expressionList.get(i));
+                    }*/
+
+
+                }
+
+                System.out.println(Arrays.toString(operations.toArray()));
+                System.out.println(Arrays.toString(operands.toArray()));
+
+                System.out.println("-".repeat(20));
+            }
+
+            //스택에 남은 연산자들 처리하기. 이부분이 가능성이 있나...?
+            while(!operations.isEmpty()){
+
+                long num2=operands.pop();
+                long num1=operands.pop();
+                operands.push(calculate(operations.pop(), num1, num2));
+            }
+
+            System.out.println(operands.peek());
+            long result = Math.abs(operands.pop());
+            System.out.println("re:"+result);
+            if (result > answer) {
+                answer=result;
+            }
+            System.out.println("ans:"+answer);
+
+        }
+
+        return answer;
+    }
+
+    public static int getIndex(String priority, String operation){
+        char[] arrs=priority.toCharArray();
+        for (int i = 0; i < arrs.length; i++) {
+
+            if (arrs[i] == Character.valueOf(operation.charAt(0))) {
+                return i;
+            }
+
+        }
+
+        return -1;
+    }
+
+    public static long calculate(String operation, long number1, long number2) {
+        switch (operation) {
+            case "+":
+                return number1+number2;
+            case "-":
+                return number1-number2;
+            case "*":
+                return number1*number2;
+            default:
+                return -1;
+        }
     }
 }
