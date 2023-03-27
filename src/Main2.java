@@ -199,4 +199,11 @@ public class Main2 {
                 return -1;
         }
     }
+
+    public static class Main3 {
+
+        public static void main(String[] args) {
+
+        }
+    }
 }
