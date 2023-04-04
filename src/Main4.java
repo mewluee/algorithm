@@ -13,8 +13,8 @@ public class Main4 {
         System.out.println(Arrays.toString(s));
     }
 
-    HashMap<String, Integer> hashEnroll=new HashMap<>();
-    HashMap<String, Integer> hashReferral=new HashMap<>();
+
+
 
     public static int[] solution(String[] enroll, String[] referral, String[] seller, int[] amount) {
         int[] answer = new int[enroll.length];
@@ -31,17 +31,23 @@ public class Main4 {
         //예시보니까 자식에서 부모로 이익이 올라가는 구조
         //자식->부모
         //사실 자식의 해당하는 부모값은 referral배열에 있어.
+        HashMap<String, Integer> hashEnroll=new HashMap<>();
+
+        hashEnroll = makeHash(enroll);
 
         for(int i=0; i<seller.length; i++){
             String sellerName=seller[i];
             int personalMoney=amount[i]*100;
-            int index = getIndex(enroll, sellerName);
+//            int index = getIndex(enroll, sellerName);
+            int index = getIndex2(hashEnroll, sellerName);
             //지금 인덱스에 셀러의 인덱스가 들어가있는 상태이다.
             System.out.println("index:"+index);
 
             while(index>=0){ //getindex함수에서 -1이 반환되면 끝나는 거지!
                 System.out.println("index:"+index);
-                int[] dividedMoneys=getMineAndMomsMoney(enroll, referral, index, personalMoney);
+                //int[] dividedMoneys=getMineAndMomsMoney(enroll, referral, index, personalMoney);
+                int[] dividedMoneys=getMineAndMomsMoney2(hashEnroll, referral, index, personalMoney);
+
                 //내돈은 그냥 answer에 바로 넣으면 되는데 엄마돈은 다시 계산해야함!
                 answer[index]+=dividedMoneys[1];
                 index=dividedMoneys[0]; //엄마의 인덱스를 넣어준다! 그럼 다시 자식이 되고 다시 또 올라가는거지.
@@ -79,6 +85,29 @@ public class Main4 {
 
     }
 
+    public static int[] getMineAndMomsMoney2(HashMap<String, Integer> hashMap, String[] referral, int index, int money){
+
+        int[] answer=new int[3]; //현재 인덱스 반환하는게 빠를려나
+        //현재 인덱스, 내돈, 엄마돈!
+
+        String momName = referral[index];
+        int momIndex = getIndex2(hashMap, momName);
+
+        //10퍼센트 돈부터 계산해야한다.
+        int momMoney = (int)(money * 0.1); // 소수점 자리수를 잘라버린다.
+        int myMoney = money - momMoney;
+
+        //내가 원래 생각했던건 인덱스값을 갖고 비교하는 거였는데~
+        //아냐 일단 구현해보자.
+
+        answer[0]=momIndex;
+        answer[1]=myMoney;
+        answer[2]=momMoney;
+
+        return answer;
+
+    }
+
     //이름에 해당하는 인덱스 가져오는 메서드
     public static int getIndex(String[] enroll, String name){
         for (int i = 0; i < enroll.length; i++) {
@@ -89,10 +118,24 @@ public class Main4 {
     }
 
     //이름에 해당하는 인덱스 가져오는 메서드
+    public static int getIndex2(HashMap<String,Integer> hashMap, String name){
+        Integer index=hashMap.get(name);
+        if(index==null){
+            return -1;
+        }else{
+            return index;
+        }
+    }
+
+
+    //이름에 해당하는 인덱스 가져오는 메서드
     public static HashMap<String, Integer> makeHash(String[] str){
         HashMap<String ,Integer> hashMap=new HashMap<>();
         for (int i = 0; i < str.length; i++) {
-            hashMap.put(str[i],i);
+            hashMap.put(str[i],i); //이미 있는건 어떻게 처리하는 거지? 키값 중복안되고 밸류값은 중복 가능함.
+                //결과적으로 key "-" 가 중복이면 에러뜨나..? 에러는 안출력하는듯. 수행이 안될듯. 제일 첫번째 "-" 해당하는 인덱스값만 들어가고
+                //그럼 내가 -1을 뽑아내려면 차라리
+
         }
         return hashMap;
     }

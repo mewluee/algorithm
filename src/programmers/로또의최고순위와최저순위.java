@@ -24,6 +24,7 @@ public class 로또의최고순위와최저순위 {
         int zeroCount=0;
         //lottos만 순회해서 0의 개수 세고, 해쉬셋에 저장한다.
 
+        //(1) 0의 개수 세기
         HashSet<Integer> hashSet=new HashSet<>();
         for (int i = 0; i < lottos.length; i++) {
             if (lottos[i] == 0) {
@@ -33,15 +34,22 @@ public class 로또의최고순위와최저순위 {
             }
         }
 
+        //(2) 로또 당첨 번호랑 같은 수 개수 세기
         int sameNumbersCount=0;
         for (int j = 0; j < win_nums.length; j++) {
             if (!hashSet.add(win_nums[j])) {
                 sameNumbersCount++;
             }
         }
+
+        //(3) 정답 반환 :
         return new int[]{
+                Math.min(7 - (sameNumbersCount + zeroCount), 6)
+                , Math.min(7 - sameNumbersCount, 6)};
+
+        /*return new int[]{
                 7-(sameNumbersCount+zeroCount)<6?7-(sameNumbersCount+zeroCount):6
-                , 7-sameNumbersCount<6?7-sameNumbersCount:6};
+                , 7-sameNumbersCount<6?7-sameNumbersCount:6};*/
     }
 
     //스트림사용 시간은 느리지만..대박..
@@ -128,10 +136,12 @@ public class 로또의최고순위와최저순위 {
         int hidden = 0;
 
         Arrays.sort(win_nums);
+
+        //이분탐색!
         for (int i = 0; i < lottos.length; i++)
             if (Arrays.binarySearch(win_nums, lottos[i]) > -1)
                 answer++;
-            else if (lottos[i] == 0)
+            else if (lottos[i] == 0) //hidden이 0의 개수
                 hidden++;
 
         return new int[] {rank[answer + hidden], rank[answer]};

@@ -77,6 +77,7 @@ public class CompetitiveContagion18405 {
                 for (int i = 0; i < 4; i++) {
                     int x=point.x+gx[i];
                     int y=point.y+gy[i];
+
                     if (0 <= x && x < N && 0 <= y && y < N && !visited[x][y]) {
                         map[x][y]=point.value;
                         Point multiPoint= new Point(x, y, point.value);

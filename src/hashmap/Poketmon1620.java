@@ -29,6 +29,8 @@ public class Poketmon1620 {
             else bw.write(Integer.toString(hashMap.get(str)+1)+"\n");
         }
 
+
+
         bw.close();
     }
 }
