@@ -68,10 +68,11 @@ public class NumberCard10815 {
 
     public static int dd(int[] mList, int search) {
         int min=0;
-        int max=mList.length;
+        int max=mList.length-1; //-1..........너이자식....
 
         while (min <= max) {
             int mid = (min + max) / 2;
+
             if(mList[mid]==search) return 1;
             else if(mList[mid]>search) max=mid-1;
             else min=mid+1;
