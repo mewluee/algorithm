@@ -26,5 +26,5 @@ public class SumOfNumbers2018 {
 
             System.out.println(count);
         }
-    }
+
 }
