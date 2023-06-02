@@ -52,7 +52,7 @@ public class conveyorBeltSushi15961 {
 
     }
 
-    public static void main(String[] args) throws IOException{
+    public static void main3(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int[] list = Arrays.stream(br.readLine().split(" "))
                 .mapToInt(Integer::parseInt)
@@ -100,6 +100,72 @@ public class conveyorBeltSushi15961 {
                 if(e>=N){
                     e=0;
                 }
+            }
+            if(eat==k){
+                if(distinct[c]>=1) {
+                    if(count-1>max_count){
+                        max_count=count-1;
+                    }
+                }else{
+                    if(count>max_count){
+                        max_count=count;
+                    }
+                }
+            }
+        }
+
+        br.close();
+        System.out.println(max_count+1);
+
+    }
+
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int[] list = Arrays.stream(br.readLine().split(" "))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        int N=list[0];
+        int d=list[1];
+        int k=list[2];
+        int c=list[3];
+
+        int[] sushies=new int[N];
+        int[] distinct=new int[d+1]; //이게 바로 중복검사다 이말이야.
+
+        for (int i = 0; i < N; i++) {
+            sushies[i] = Integer.parseInt(br.readLine());
+        }
+
+        int[] copy2sushies=new int[N*2];
+        System.arraycopy(sushies, 0, copy2sushies, 0, N);
+        for(int j=N; j<N*2; j++ ){
+            copy2sushies[j]=sushies[j-N];
+        }
+
+        //System.out.println(Arrays.toString(copy2sushies));
+        int s=0;
+        int e=0;
+        int max_count=0;
+        int count=0;
+        int eat=0;
+
+        while(s<N) {
+            if(eat>k){
+                if(distinct[copy2sushies[s]]==1){
+                    count--;
+                }
+                distinct[copy2sushies[s]]--;
+                eat--;
+                s++;
+            }else{
+                if(distinct[copy2sushies[e]]==0){
+                    count++;
+                }
+                distinct[copy2sushies[e]]++;
+                e++;
+                eat++;
+
             }
             if(eat==k){
                 if(distinct[c]>=1) {
