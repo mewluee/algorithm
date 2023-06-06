@@ -2,7 +2,7 @@ package twoPointers;
 
 import java.util.Scanner;
 
-public class SumOfNumbers2018 {
+public class 수들의합5_2018 {
 
 
         public static void main(String[] args) {
