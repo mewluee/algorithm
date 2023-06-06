@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class conveyorBeltSushi15961 {
+public class 회전초밥15961 {
 
 
     //어떤 알고리즘?
@@ -143,7 +143,6 @@ public class conveyorBeltSushi15961 {
             copy2sushies[j]=sushies[j-N];
         }
 
-        //System.out.println(Arrays.toString(copy2sushies));
         int s=0;
         int e=0;
         int max_count=0;
