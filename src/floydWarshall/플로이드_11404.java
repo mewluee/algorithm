@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-public class Floyd11404 {
+public class 플로이드_11404 {
 
     private final static int MAX_NUMBER = 98765432;
     //100번 더할수있으니까 비용최대x100
