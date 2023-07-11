@@ -14,7 +14,7 @@ public class 키순서_2458 {
     static int[][] result;
     static int[][] map;
 
-    static int INF = 987654321;
+    static int INF = 987654321; //좋아...
 
     public static void main(String[] args) throws IOException {
 
@@ -82,8 +82,8 @@ public class 키순서_2458 {
             list.add(new ArrayList<>());
         }
         result = new int[N + 1][2];
-        //0번 인덱스는 나보다 작은 사람
-        //1번 인덱스는 나보다 큰 사람
+        //0번 인덱스는 나보다 작은 사람 > 도착할때마다 도착한 노드의 0번 인덱스값 증가
+        //1번 인덱스는 나보다 큰 사람 > 도착할때마다 내 노드의 1번 인덱스값 증가
 
         for (int m = 0; m < M; m++) {
             st = new StringTokenizer(br.readLine(), " ");
