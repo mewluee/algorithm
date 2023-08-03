@@ -1,4 +1,4 @@
-package bfs;
+package 너비우선탐색_BFS;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class RGcolorWeakness10026 {
+public class 적록색약_10026 {
     private String site="https://www.acmicpc.net/problem/10026";
 
     public void result() throws IOException {
