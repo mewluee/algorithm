@@ -1,4 +1,4 @@
-package implement;
+package 구현_implement;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class RobotOnConveyorBelt20055 {
+public class 컨베이어벨트위의로봇_20055 {
     String site = "https://www.acmicpc.net/problem/20055";
 
     static int N;
