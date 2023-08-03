@@ -1,10 +1,10 @@
-package bfs;
+package 너비우선탐색_BFS;
 
 import java.io.*;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Cabbage1012 {
+public class 유기농배추_1012 {
     private String site="https://www.acmicpc.net/problem/1012";
 
     public void result() throws IOException {
