@@ -9,6 +9,13 @@ import java.util.Stack;
 
 public class 개미굴_14725 {
 
+    /*
+    트리구조 HashMap으로 해보기
+    static class Floor {
+        Map<String, Floor> room = new HashMap<>();
+    }
+     */
+
     static int C;
     static StringBuilder sb=new StringBuilder();
 
@@ -33,6 +40,7 @@ public class 개미굴_14725 {
                 node=child;
             }
         }
+
         //System.out.println(dfs(root));
         dfs2(root, 0);
         System.out.println(sb.toString());
@@ -97,6 +105,7 @@ public class 개미굴_14725 {
             개미굴_14725.Node node = (개미굴_14725.Node) obj;
             return me.equals(node.me);
         }
+
 
         @Override
         public int compareTo(Node o) {
