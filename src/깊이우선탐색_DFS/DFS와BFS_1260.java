@@ -1,4 +1,4 @@
-package dfs;
+package 깊이우선탐색_DFS;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,6 +47,7 @@ public class DFS와BFS_1260 {
         boolean[] visited = new boolean[N + 1];
         resultStr = "";
         DFS3(visited, V);
+        //DFS(V);
         System.out.println(resultStr);
         resultStr = "";
         BFS(V);
@@ -89,14 +90,13 @@ public class DFS와BFS_1260 {
     }
 
     static void DFS3(boolean[] visited, int node) {
-        visited[node]=true;
-        resultStr+=node+" ";
+        visited[node] = true;
+        resultStr += node + " ";
         for (int n = 1; n <= N; n++) {
             if (map[node][n] && !visited[n]) {
                 DFS3(visited, n);
             }
         }
-
 
     }
 
@@ -105,14 +105,17 @@ public class DFS와BFS_1260 {
         boolean[] visited = new boolean[N + 1];
         Stack<Integer> stack = new Stack<>();
         stack.push(start);
+        //visited[start] = true;
 
+        // 1 -> 4 3 2 -> 2 true  끝!
         while (!stack.isEmpty()) {
 
             int now = stack.pop();
-
+            if(visited[now]) continue;
+            //else visited[now] = true;
             visited[now] = true;
             resultStr += now + " ";
-            System.out.println(resultStr);
+            //System.out.println(resultStr);
 
             for (int n = N; n >= 1; n--) {
                 if (map[now][n] && !visited[n]) {
@@ -133,7 +136,7 @@ public class DFS와BFS_1260 {
     }
 
     static void BFS2(boolean[] visited, int node) {
-        visited[node]=true;
+        visited[node] = true;
 
     }
 
@@ -148,7 +151,7 @@ public class DFS와BFS_1260 {
 
             int now = queue.poll();
 
-            resultStr +=now+" ";
+            resultStr += now + " ";
             //System.out.println(resultStr);
 
             for (int n = 1; n <= N; n++) {
@@ -159,5 +162,15 @@ public class DFS와BFS_1260 {
             }
         }
 
+    }
+
+    static class Point {
+        int x;
+        int y;
+
+        public Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
     }
 }
