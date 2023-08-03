@@ -1,8 +1,7 @@
-package samsungMail;
+package samsung;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.StringTokenizer;
 
 public class SamsungMail01 {
