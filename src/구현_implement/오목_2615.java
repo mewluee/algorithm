@@ -1,4 +1,4 @@
-package implement;
+package 구현_implement;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Omok2615 {
+public class 오목_2615 {
 
 
     static int[][] map=new int[19][19];
