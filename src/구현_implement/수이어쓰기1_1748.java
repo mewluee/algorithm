@@ -1,11 +1,11 @@
-package implement;
+package 구현_implement;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
-public class WritingNumberConsecutively1748 {
+public class 수이어쓰기1_1748 {
 
     private String site = "https://www.acmicpc.net/problem/1748";
 
