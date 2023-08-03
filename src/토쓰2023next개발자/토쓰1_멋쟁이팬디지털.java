@@ -2,11 +2,6 @@ package 토쓰2023next개발자;
 
 public class 토쓰1_멋쟁이팬디지털 {
 
-    /*
-    문제
-
-     */
-
     public static void main(String[] args) {
 
         int answer=solution("1451232125",2);

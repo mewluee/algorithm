@@ -39,9 +39,9 @@ public class 토쓰4_뭐더라 {
 
         String[] answer={};
         if(result.size()>0){
-            answer=new String[inputMaxSize];
-            for (int i = 0; i < inputMaxSize; i++) {
-                answer[i]=result.get(inputMaxSize-i-1);
+            answer=new String[result.size()];
+            for (int i = 0; i < result.size(); i++) {
+                answer[i]=result.get(result.size()-i-1);
             }
         }
         return answer;
