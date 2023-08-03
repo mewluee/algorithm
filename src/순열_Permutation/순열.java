@@ -1,4 +1,4 @@
-package combination;
+package 순열_Permutation;
 
 import java.util.Arrays;
 
@@ -25,6 +25,8 @@ public class 순열 {
         }
         System.out.println(count);
     }
+
+
 
     /* 출력
         [1, 2, 3] [1, 2, 4] [1, 2, 5]

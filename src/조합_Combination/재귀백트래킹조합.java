@@ -1,16 +1,16 @@
-package permutation;
+package 조합_Combination;
 
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
-public class 재귀조합 {
+public class 재귀백트래킹조합 {
 
     static boolean[] visited;
     static int n;
     static int[] arrs = new int[]{1, 2, 3, 4, 5};
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in); // 깊이 입력받기
         int size=scanner.nextInt();
 
         n=arrs.length;

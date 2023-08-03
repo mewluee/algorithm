@@ -1,4 +1,4 @@
-package permutation;
+package 조합_Combination;
 
 import java.util.Arrays;
 

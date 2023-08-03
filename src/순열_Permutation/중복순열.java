@@ -1,4 +1,4 @@
-package combination;
+package 순열_Permutation;
 
 import java.util.Arrays;
 
