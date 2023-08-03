@@ -1,11 +1,11 @@
-package implement;
+package 구현_implement;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class RoboticVacuum14503 {
+public class 로봇청소기_14503 {
 
     private String site = "https://www.acmicpc.net/problem/14503";
 
