@@ -1,10 +1,10 @@
-package implement;
+package 구현_implement;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class DefendTheCastle1236 {
+public class 성지키기_1236 {
 
     /*
     음...
