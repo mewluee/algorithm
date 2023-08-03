@@ -1,12 +1,13 @@
-package dijkstra;
+package 다익스트라_Dijkstra;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.PriorityQueue;
 import java.util.stream.IntStream;
 
-public class 파티_1238 {
+public class 파티_1238_실패 {
 
     static int N;
     static int M;
@@ -23,16 +24,39 @@ public class 파티_1238 {
         M = Integer.parseInt(inputs[1]);
         X = Integer.parseInt(inputs[2]);
 
+
+
+        for (int m = 0; m < M; m++) {
+            int[] lines = Arrays.stream(br.readLine().split(" "))
+                    .mapToInt(Integer::parseInt)
+                    .toArray();
+        }
+
+    }
+
+    static void dijkstar3(PriorityQueue<int[]> queue){
+
+
+    }
+    public static void main2(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] inputs = br.readLine().split(" ");
+
+        N = Integer.parseInt(inputs[0]);
+        M = Integer.parseInt(inputs[1]);
+        X = Integer.parseInt(inputs[2]);
+
         map = new int[N][N];
         IntStream.range(0, N)
-                .forEach(e -> Arrays.fill(map[e], 1000000000));
+                .forEach(e -> Arrays.fill(map[e], 987654321));
         result = new int[N][N];
 
         for (int m = 0; m < M; m++) {
             int[] lines = Arrays.stream(br.readLine().split(" "))
                     .mapToInt(Integer::parseInt)
                     .toArray();
-            map[lines[0] - 1][lines[1] - 1] = lines[2];
+            map[lines[0]-1][lines[1]-1] = lines[2];
         }
 
         for (int n = 0; n < N; n++) {
@@ -40,33 +64,60 @@ public class 파티_1238 {
         }
         //printMap(map);
 
-        for (int i = 1; i <= N; i++) {
-            result[i-1]=dijkstra(i);
-        }
-        //printMap(result);
-
-        int max=0;
+        //--------
         for (int i = 0; i < N; i++) {
-            int distance=result[i][X]+result[X][i];
+            result[i] = dijkstra2(i);
+        }
+        printMap(result);
+
+        int max = 0;
+        for (int i = 0; i < N; i++) {
+            int distance = result[i][X] + result[X][i];
             if (distance > max) {
-                max=distance;
+                max = distance;
             }
         }
         System.out.println(max);
     }
 
-    static int[] dijkstra(int start) {
-        int[] dist = map[start - 1];
+
+    static int[] dijkstra2(int start) {
+        int[] dist = map[start];
         //System.out.println("초기dist값:" + Arrays.toString(dist));
         boolean[] visited = new boolean[N];
-        visited[start - 1] = true;
+        visited[start] = true;
+
+        //int node = findMinValueNode(dist, visited);
+        for (int i = 0; i < N - 2; i++) {
+            int node = findMinValueNode(dist, visited);
+            visited[node] = true;
+            for (int j = 0; j < N; j++) {
+                if (!visited[j]) {
+                    if (dist[j] > map[node][j] + dist[node]) {
+                        dist[j] = map[node][j] + dist[node];
+                    }
+                }
+            }
+        }
+        //System.out.println("완료 후 dist:" + Arrays.toString(dist));
+        return dist;
+    }
+
+    static int[] dijkstra(int start) {
+        int[] dist = map[start];
+        //System.out.println("초기dist값:" + Arrays.toString(dist));
+        boolean[] visited = new boolean[N];
+        visited[start] = true;
 
         int node = findMinValueNode(dist, visited);
         while (node >= 0) {
             for (int n = 0; n < N; n++) {
-                int ds = map[node][n] + dist[node];
-                if (ds < dist[n]) {
-                    dist[n] = ds;
+
+                if (!visited[n]) {
+                    int ds = map[node][n] + dist[node];
+                    if (ds < dist[n]) {
+                        dist[n] = ds;
+                    }
                 }
             }
             visited[node] = true;
