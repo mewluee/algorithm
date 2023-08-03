@@ -1,4 +1,4 @@
-package dfs;
+package 깊이우선탐색_DFS;
 
 import java.io.BufferedReader;
 import java.io.IOException;
