@@ -1,4 +1,4 @@
-package bfs;
+package 너비우선탐색_BFS;
 
 import java.io.BufferedReader;
 import java.io.IOException;
