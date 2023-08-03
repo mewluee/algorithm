@@ -1,9 +1,9 @@
-package dfs;
+package 깊이우선탐색_DFS;
 
 import java.io.*;
 import java.util.*;
 
-public class DfsExample1987 {
+public class 알파벳_1987_실패 {
 
     class Country{
         private String name;
