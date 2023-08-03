@@ -1,11 +1,11 @@
-package implement;
+package 구현_implement;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class HelloFineDust17144 {
+public class 미세먼지안녕_17144 {
 
 
     static int[] dx = {-1, 0, 1, 0}; //상,좌,하,우
