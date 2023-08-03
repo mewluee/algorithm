@@ -1,4 +1,4 @@
-package implement;
+package 구현_implement;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class ChickenDelivery15686 {
+public class 치킨배달_15686 {
 
     private String site="https://www.acmicpc.net/problem/15686";
 
