@@ -1,11 +1,11 @@
-package bfs;
+package 너비우선탐색_BFS;
 
 import java.io.*;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.stream.Stream;
 
-public class Tomato7576 {
+public class 토마토_7576 {
     private String site="https://www.acmicpc.net/problem/7576";
 
     public void result() throws IOException {
