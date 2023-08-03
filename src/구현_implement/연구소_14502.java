@@ -1,4 +1,4 @@
-package implement;
+package 구현_implement;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -51,23 +51,25 @@ public class 연구소_14502 {
     }
 
     static void makeCombination(int row){
-        if(wall>3) return;
-        else if(wall==3){
+
+        if(wall==3){
             //System.out.println("wall:"+wall);
             //printMap(map);
             int count = getSafeZone(virusSpread());
             if(count>result) result=count;
             //System.out.println("------------------------");
+            return;
         }
         for (int n = row; n < N; n++) {
             for (int m = 0; m < M; m++) {
-                if(visited[n][m]) continue;
-                visited[n][m]=true;
+                //if(visited[n][m]) continue;
+                //visited[n][m]=true;
+                if(map[n][m]!=0) continue;
                 wall++;
                 map[n][m]=1;
                 makeCombination(n);
                 map[n][m]=0;
-                visited[n][m]=false;
+                //visited[n][m]=false;
                 wall--;
             }
         }
