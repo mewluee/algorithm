@@ -1,8 +1,8 @@
-package dfs;
+package 깊이우선탐색_DFS;
 
 import java.io.*;
 
-public class FloorDecoration1388 {
+public class 바닥장식_1388 {
     private String site="https://www.acmicpc.net/problem/1388";
 
     //그런데 dfs로 구현안함;;
