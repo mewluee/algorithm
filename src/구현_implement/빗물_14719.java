@@ -1,11 +1,11 @@
-package implement;
+package 구현_implement;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Rainwater14719 {
+public class 빗물_14719 {
 
     private String site = "https://www.acmicpc.net/problem/14719";
 
