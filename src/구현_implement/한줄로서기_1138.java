@@ -1,11 +1,11 @@
-package implement;
+package 구현_implement;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class StandInLine1138 {
+public class 한줄로서기_1138 {
 
     String site = "https://www.acmicpc.net/problem/1138";
 
