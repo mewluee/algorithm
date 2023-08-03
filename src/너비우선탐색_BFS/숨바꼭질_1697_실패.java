@@ -1,11 +1,11 @@
-package bfs;
+package 너비우선탐색_BFS;
 
 import java.io.*;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class HideAndSeek1697 {
+public class 숨바꼭질_1697_실패 {
 
     public void result() throws IOException {
 
