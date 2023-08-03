@@ -1,11 +1,11 @@
-package implement;
+package 구현_implement;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class CandyGame3085 {
+public class 사탕게임_3085 {
 
     private String site = "https://www.acmicpc.net/problem/3085";
 
