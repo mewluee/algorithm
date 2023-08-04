@@ -1,4 +1,4 @@
-package string_parsing;
+package 파싱_Parsing;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MissingParenthesis1541 {
+public class 잃어버린괄호_1541 {
 
     private String site="https://www.acmicpc.net/problem/1541";
 
