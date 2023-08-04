@@ -1,9 +1,9 @@
-package sort;
+package 정렬_Sort;
 
 import java.io.*;
 import java.util.*;
 
-public class Statistics2108 {
+public class 통계학_2108 {
 
     private String site="https://www.acmicpc.net/problem/2108";
 
