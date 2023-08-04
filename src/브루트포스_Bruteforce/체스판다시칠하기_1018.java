@@ -1,8 +1,8 @@
-package bruteforce;
+package 브루트포스_Bruteforce;
 
 import java.util.Scanner;
 
-public class PrintingChessboard1018 {
+public class 체스판다시칠하기_1018 {
 
     static int countColoring(String[] arrStr,int rowStart, int colStart){
         //System.out.println("ji");
