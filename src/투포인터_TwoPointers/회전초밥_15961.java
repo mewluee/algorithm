@@ -1,11 +1,11 @@
-package twoPointers;
+package 투포인터_TwoPointers;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class 회전초밥15961 {
+public class 회전초밥_15961 {
 
 
     //어떤 알고리즘?
