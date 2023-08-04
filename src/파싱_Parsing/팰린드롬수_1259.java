@@ -1,8 +1,8 @@
-package string_parsing;
+package 파싱_Parsing;
 
 import java.util.Scanner;
 
-public class PalindromeNumber1259 {
+public class 팰린드롬수_1259 {
     public void result(){
         Scanner input=new Scanner(System.in);
         boolean flag=true;
