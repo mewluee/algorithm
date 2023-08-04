@@ -1,4 +1,4 @@
-package bruteforce;
+package 브루트포스_Bruteforce;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.stream.IntStream;
 
-public class Minecraft18111 {
+public class 마인크래프트_18111 {
 
     private String site="https://www.acmicpc.net/problem/18111";
 
