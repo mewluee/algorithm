@@ -1,10 +1,10 @@
-package tree;
+package 트리_Tree;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.HashSet;
 
-public class PhoneNumberList5052 {
+public class 전화번호목록_5052_실패 {
 
     private String str="https://www.acmicpc.net/problem/5052";
 
