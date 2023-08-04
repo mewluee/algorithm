@@ -1,4 +1,4 @@
-package pigeonHouse;
+package 비둘기집_PigeonHouse;
 
 import java.io.*;
 import java.util.*;
