@@ -1,10 +1,10 @@
-package string_parsing;
+package 파싱_Parsing;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class IOIOI5525 {
+public class IOIOI_5525 {
 
     private String site="https://www.acmicpc.net/problem/5525";
 
