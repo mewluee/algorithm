@@ -1,8 +1,8 @@
-package bruteforce;
+package 브루트포스_Bruteforce;
 
 import java.util.Scanner;
 
-public class Decomposition2231 {
+public class 분해합_2231 {
 
 
     private int getSumNumberOfEach(int n, int length){
