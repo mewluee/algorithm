@@ -1,9 +1,9 @@
-package stack;
+package 스택_Stack;
 
 import java.util.Scanner;
 import java.util.Stack;
 
-public class BalancedWorld4949 {
+public class 균형잡힌세상_4949 {
 
     public void result(){
         Scanner input=new Scanner(System.in);
