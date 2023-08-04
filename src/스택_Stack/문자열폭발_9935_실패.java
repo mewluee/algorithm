@@ -1,4 +1,4 @@
-package stack;
+package 스택_Stack;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Iterator;
 import java.util.Stack;
 
-public class StringBomb9935 {
+public class 문자열폭발_9935_실패 {
 
     public void result() throws IOException {
 
