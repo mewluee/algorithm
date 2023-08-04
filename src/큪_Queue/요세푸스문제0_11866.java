@@ -1,9 +1,9 @@
-package queue;
+package 큪_Queue;
 
 import java.io.*;
 import java.util.LinkedList;
 
-public class Josephus11866 {
+public class 요세푸스문제0_11866 {
 
     public void result() throws IOException {
 
