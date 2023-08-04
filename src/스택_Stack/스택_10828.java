@@ -1,10 +1,10 @@
-package stack;
+package 스택_Stack;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.Stack;
 
-public class Stack10828 {
+public class 스택_10828 {
 
     private String site="https://www.acmicpc.net/problem/10828";
 
