@@ -1,4 +1,4 @@
-package sort;
+package 정렬_Sort;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.OutputStreamWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class NumberGame1755 {
+public class 숫자놀이_1755 {
 
     private String site="https://www.acmicpc.net/problem/1755";
 
