@@ -1,11 +1,11 @@
-package queue;
+package 큪_Queue;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Queue10845 {
+public class 큐_10845 {
 
     private String site="https://www.acmicpc.net/problem/10845";
 
