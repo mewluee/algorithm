@@ -1,10 +1,10 @@
-package queue;
+package 큪_Queue;
 
 import java.io.*;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Card2164 {
+public class Card2_2164 {
 
     private String site="https://www.acmicpc.net/problem/2164";
 
