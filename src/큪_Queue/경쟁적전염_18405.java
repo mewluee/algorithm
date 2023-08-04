@@ -1,4 +1,4 @@
-package queue;
+package 큪_Queue;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class CompetitiveContagion18405 {
+public class 경쟁적전염_18405 {
 
     public static void main(String[] args) throws IOException {
 
