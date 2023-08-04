@@ -1,10 +1,10 @@
-package queue;
+package 큪_Queue;
 
 import java.io.*;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class PrinterQueue1966 {
+public class 프린터큐_1966 {
 
     private String site="https://www.acmicpc.net/problem/1966";
 
