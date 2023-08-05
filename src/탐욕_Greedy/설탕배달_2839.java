@@ -1,8 +1,8 @@
-package greedy;
+package 탐욕_Greedy;
 
 import java.io.*;
 
-public class GreedyAL2839 {
+public class 설탕배달_2839 {
     public void result() throws IOException{
 
         //백준 2839번 풀이중 >> 그리디 알고리즘(탐욕->최적해구하기/속도올라감)
