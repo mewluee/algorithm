@@ -1,9 +1,9 @@
-package hashmap;
+package 해시맵_Hashmap;
 
 import java.io.*;
 import java.util.HashMap;
 
-public class SitePassword17219 {
+public class 비밀번호찾기_17219 {
 
     private String site="https://www.acmicpc.net/problem/17219";
 
