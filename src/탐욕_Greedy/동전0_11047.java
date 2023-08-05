@@ -1,4 +1,4 @@
-package greedy;
+package 탐욕_Greedy;
 
 import java.io.BufferedReader;
 import java.io.IOException;
