@@ -1,9 +1,9 @@
-package hashmap;
+package 해시맵_Hashmap;
 
 import java.io.*;
 import java.util.HashMap;
 
-public class Poketmon1620 {
+public class 나는야포켓몬마스터이다솜_1620 {
 
     public void result() throws IOException {
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
