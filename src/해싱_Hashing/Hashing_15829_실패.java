@@ -1,9 +1,9 @@
-package hashing;
+package 해싱_Hashing;
 
 import java.io.*;
 import java.math.BigInteger;
 
-public class Hashing15829 {
+public class Hashing_15829_실패 {
 
     public void result() throws IOException {
 
