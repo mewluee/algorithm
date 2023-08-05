@@ -1,4 +1,4 @@
-package hashset;
+package 해시셋_Hashset;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.HashSet;
 
-public class NumberCard10815 {
+public class 숫자카드_10815 {
 
 
     public static void main(String[] args) throws IOException{
