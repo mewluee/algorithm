@@ -1,8 +1,8 @@
-package hashmap;
+package 해시맵_Hashmap;
 
 import java.util.*;
 
-public class NoHearNoSee1764 {
+public class 듣보잡_1764 {
 
     public void result(){
 
