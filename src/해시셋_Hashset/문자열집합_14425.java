@@ -1,4 +1,4 @@
-package hashset;
+package 해시셋_Hashset;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.StringTokenizer;
 
-public class StringsSet14425 {
+public class 문자열집합_14425 {
 
     private String site="https://www.acmicpc.net/problem/14425";
 
