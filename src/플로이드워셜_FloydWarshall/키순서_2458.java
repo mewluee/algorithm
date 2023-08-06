@@ -1,4 +1,4 @@
-package floydWarshall;
+package 플로이드워셜_FloydWarshall;
 
 import java.io.BufferedReader;
 import java.io.IOException;
