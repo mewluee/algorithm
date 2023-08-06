@@ -1,4 +1,4 @@
-package bitMasking;
+package 비트마스킹_BitMasking;
 
 import java.io.BufferedReader;
 import java.io.IOException;
