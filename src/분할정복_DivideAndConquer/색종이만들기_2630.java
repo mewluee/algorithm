@@ -1,4 +1,4 @@
-package divideAndConquer;
+package 분할정복_DivideAndConquer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class MakingConfetti2630 {
+public class 색종이만들기_2630 {
     private String site="https://www.acmicpc.net/problem/2630";
 
     public void result() throws IOException {
