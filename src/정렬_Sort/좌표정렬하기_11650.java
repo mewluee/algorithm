@@ -1,10 +1,10 @@
-package comparactor;
+package 정렬_Sort;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class Comparator11650_51 {
+public class 좌표정렬하기_11650 {
 
     public void result() throws IOException {
 
