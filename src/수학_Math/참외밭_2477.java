@@ -1,8 +1,8 @@
-package math;
+package 수학_Math;
 
 import java.io.*;
 
-public class MelonField2477 {
+public class 참외밭_2477 {
     private String site="https://www.acmicpc.net/problem/2477";
 
     public void result() throws IOException {
