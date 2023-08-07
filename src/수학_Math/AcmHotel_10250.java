@@ -1,8 +1,8 @@
-package math;
+package 수학_Math;
 
 import java.io.*;
 
-public class ACMhotel10250 {
+public class AcmHotel_10250 {
 
     private String site="https://www.acmicpc.net/problem/10250";
 
