@@ -1,11 +1,11 @@
-package math;
+package 수학_Math;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Coloring1117 {
+public class 색칠1_1117 {
     String site="https://www.acmicpc.net/problem/1117";
 
 
