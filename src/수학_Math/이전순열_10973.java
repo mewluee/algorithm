@@ -1,10 +1,10 @@
-package math;
+package 수학_Math;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class PreviousPermutation10973 {
+public class 이전순열_10973 {
 
     String site = "https://www.acmicpc.net/problem/10973";
 
