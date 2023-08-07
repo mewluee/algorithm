@@ -1,9 +1,9 @@
-package math;
+package 수학_Math;
 
 import java.io.*;
 import java.util.Arrays;
 
-public class Triangle4153 {
+public class 직각삼각형_4153 {
     private String site="https://www.acmicpc.net/problem/4153";
 
     public void result() throws IOException {
