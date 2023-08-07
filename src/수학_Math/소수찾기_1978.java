@@ -1,8 +1,8 @@
-package math;
+package 수학_Math;
 
 import java.util.Scanner;
 
-public class FindDecimal1978 {
+public class 소수찾기_1978 {
     public void result(){
 
         Scanner input=new Scanner(System.in);
