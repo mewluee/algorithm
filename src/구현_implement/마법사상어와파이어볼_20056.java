@@ -69,7 +69,7 @@ public class 마법사상어와파이어볼_20056 {
             map[ball.x][ball.y].remove(ball);
 
             int dx = (ball.x + directions[ball.d][0] * ball.s) % N;
-            if (dx == 0) dx = N;
+            if (dx == 0) dx = N; // N+1 이라서..아하
             if (dx < 0) dx += N;
             int dy = (ball.y + directions[ball.d][1] * ball.s) % N;
             if (dy == 0) dy = N;
