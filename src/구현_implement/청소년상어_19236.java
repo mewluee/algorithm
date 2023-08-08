@@ -114,7 +114,7 @@ public class 청소년상어_19236 {
 
         if (count > max_count) max_count = count;
 
-        //물고기 이동 후에 맵 깊은 복사
+        //물고기 이동 후에 맵 깊은 복사 ->??? 기억인나..왜ㅑ그랫을까요..흠...
         Point[][] nmap = fishSwim(map);
 
         //상어 이동 (최대 3칸)
@@ -123,7 +123,7 @@ public class 청소년상어_19236 {
             Point shark = nmap[pshark.x][pshark.y];
             int x = shark.x + directions[shark.direction][0] * i;
             int y = shark.y + directions[shark.direction][1] * i;
-
+            // 0 = shark , -1 = 상어가 지나가서 빈공간(물고기먹었으니까)
             if (0 <= x && x < 4 && 0 <= y && y < 4) { //범위 안에 있으면 먹으면 된다
                 Point go = nmap[x][y];
                 if (go.fishNumber != -1) { //물고기가 있으면 고
