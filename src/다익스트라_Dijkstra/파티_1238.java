@@ -3,17 +3,18 @@ package 다익스트라_Dijkstra;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.PriorityQueue;
+import java.util.*;
 import java.util.stream.IntStream;
 
-public class 파티_1238_실패 {
+public class 파티_1238 {
 
     static int N;
     static int M;
     static int X;
     static int[][] map;
     static int[][] result;
+
+    static ArrayList<Node>[] lists;
 
     public static void main(String[] args) throws IOException {
 
@@ -24,20 +25,77 @@ public class 파티_1238_실패 {
         M = Integer.parseInt(inputs[1]);
         X = Integer.parseInt(inputs[2]);
 
-
+        lists = new ArrayList[N + 1];
+        for (int n = 0; n < N + 1; n++) {
+            lists[n] = new ArrayList<>();
+        }
 
         for (int m = 0; m < M; m++) {
             int[] lines = Arrays.stream(br.readLine().split(" "))
                     .mapToInt(Integer::parseInt)
                     .toArray();
+            lists[lines[0]].add(new Node(lines[1], lines[2]));
         }
 
+        int max = 0;
+        int[] xdist = dijkstar3(X);
+        for (int n = 1; n < N + 1; n++) {
+            int rtime=dijkstar3(n)[X]+xdist[n];
+            if(rtime>max) max=rtime;
+        }
+        System.out.println(max);
     }
 
-    static void dijkstar3(PriorityQueue<int[]> queue){
+    // 내가 구해야하는 경로들 n->x , x->n
+    // 메서드가 구하는 값 : 시작점 -> n
+    static int[] dijkstar3(int start) {
+        int[] dist = new int[N + 1];
+        Arrays.fill(dist, 987654321); //dist[] : start -> n개의 노드로 가는 경로 시간
+        dist[start] = 0; // start->start 는 0이다.
+        Queue<Node> pq = new PriorityQueue<>(new Comparator<Node>() {
+            @Override
+            public int compare(Node o1, Node o2) {
+                return o1.time - o2.time;
+            }
+        });
+        //(2)
+        boolean[] visited=new boolean[N+1];
 
+        pq.add(new Node(start, 0));
 
+        while (!pq.isEmpty()) {
+
+            Node now = pq.poll();
+            //경유지
+
+            //(2) 어째서..시간증가..?
+            if(visited[now.dest]) continue;
+            visited[now.dest]=true;
+
+            for (Node next : lists[now.dest]) {
+                int ntime = now.time + next.time;
+                if (ntime < dist[next.dest]) {
+                    dist[next.dest] = ntime;
+                    pq.add(new Node(next.dest, dist[next.dest]));
+                }
+            }
+        }
+
+        //System.out.println("시작점:" + start);
+        //System.out.println(Arrays.toString(dist));
+        return dist;
     }
+
+    static class Node {
+        int dest;
+        int time;
+
+        public Node(int dest, int time) {
+            this.dest = dest;
+            this.time = time;
+        }
+    }
+
     public static void main2(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -56,7 +114,7 @@ public class 파티_1238_실패 {
             int[] lines = Arrays.stream(br.readLine().split(" "))
                     .mapToInt(Integer::parseInt)
                     .toArray();
-            map[lines[0]-1][lines[1]-1] = lines[2];
+            map[lines[0] - 1][lines[1] - 1] = lines[2];
         }
 
         for (int n = 0; n < N; n++) {
