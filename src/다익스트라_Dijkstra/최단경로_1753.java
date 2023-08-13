@@ -47,19 +47,16 @@ public class 최단경로_1753 {
         bw.close();
     }
 
-    //89%->시간초과
+    //89%->시간초과 해결 코드 (인접리스트+우선순위큐)
     static int[] dij2(int startNode){
         PriorityQueue<Edge> pq=new PriorityQueue();
         int[] dist=new int[V+1];
         Arrays.fill(dist, INF);
         dist[startNode]=0;
         pq.add(new Edge(startNode, 0));
-        visited=new boolean[V+1];
 
         while(!pq.isEmpty()){
             Edge now=pq.poll();
-            if(visited[now.dest]) continue;
-            //경유지 = now.dest
 
             for(Edge next:lists[now.dest]){
                 int via_weight=now.weight+next.weight;
@@ -72,7 +69,7 @@ public class 최단경로_1753 {
         }
         return dist;
     }
-
+    //시간초과 코드 (인접리스트+단순계산로직)
     static int[] dij(int startNode){
 
         int[] d=new int[V+1];
