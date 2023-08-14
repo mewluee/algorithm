@@ -43,6 +43,8 @@ public class 파티_1238 {
             int rtime=dijkstar3(n)[X]+xdist[n];
             if(rtime>max) max=rtime;
         }
+        // 총 N+1 -> 600~
+        // revered_map > 2번 -> 200~
         System.out.println(max);
     }
 
@@ -68,7 +70,7 @@ public class 파티_1238 {
             Node now = pq.poll();
             //경유지
 
-            //(2) 어째서..시간증가..?
+            //(2) 어째서..시간증가..????????????????????????????????????왜..시간이..더..?
             if(visited[now.dest]) continue;
             visited[now.dest]=true;
 
