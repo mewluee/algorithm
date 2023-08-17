@@ -1,5 +1,3 @@
-package programmers;
-
 import java.util.*;
 
 public class 신고결과받기 {

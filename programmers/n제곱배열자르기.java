@@ -1,5 +1,3 @@
-package programmers;
-
 import java.lang.reflect.Array;
 import java.security.spec.RSAOtherPrimeInfo;
 import java.util.Arrays;

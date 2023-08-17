@@ -1,5 +1,3 @@
-package programmers;
-
 import java.io.IOException;
 
 public class 택배배달과수거하기 {
