@@ -31,4 +31,39 @@ public class 괄호_9012 {
         bw.flush();
         bw.close();
     }
+
+    public static void main2(String[] args) throws IOException{
+
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        int T=Integer.parseInt(br.readLine());
+
+        for(int t=0; t<T; t++) {
+            String str=br.readLine();
+            print(str);
+        }
+    }
+
+    static void print(String s) {
+        Stack<Character> stack=new Stack();
+
+        for(int i=0; i<s.length(); i++) {
+            Character now=s.charAt(i);
+            if(now=='(') {
+                stack.push(now);
+            }else if(now==')') {
+                if(!stack.isEmpty()) {
+                    stack.pop();
+                }else {
+                    System.out.println("NO");
+                    return;
+                }
+            }
+        }
+
+        if(stack.isEmpty()) {
+            System.out.println("YES");
+        }else {
+            System.out.println("NO");
+        }
+    }
 }
