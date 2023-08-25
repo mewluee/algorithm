@@ -1,3 +1,5 @@
+package level1;
+
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
