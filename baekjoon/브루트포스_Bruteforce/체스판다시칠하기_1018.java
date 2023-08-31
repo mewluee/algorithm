@@ -1,6 +1,10 @@
 package 브루트포스_Bruteforce;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class 체스판다시칠하기_1018 {
 
@@ -118,5 +122,54 @@ public class 체스판다시칠하기_1018 {
             }
         }
         System.out.println(min);
+    }
+
+    //2회차 풀이
+    public static void main(String[] args) throws IOException {
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st=new StringTokenizer(br.readLine());
+        int N=Integer.parseInt(st.nextToken());
+        int M=Integer.parseInt(st.nextToken());
+
+        String[] map = new String[N];
+
+        for(int n=0; n<N; n++) {
+            map[n]=br.readLine();
+        }
+        int min=250;
+
+        for(int n=0; n<=N-8; n++) {
+            for(int m=0; m<=M-8; m++) {
+                int count=check(map, n, m);
+                count=Math.min(count,  64-count);
+                if(count<min) {
+                    min=count;
+                }
+            }
+        }
+        System.out.println(min);
+    }
+
+    static int check(String[] map, int n, int m) {
+        int count=0;
+        for(int i=0; i<8; i++) {
+            for(int j=0; j<8; j++) {
+                if(i%2==0) { //짝수는 BW..
+                    if(j%2==0) { //짝수는 B
+                        if(map[n+i].charAt(m+j)!='B') count++;
+                    }else { //홀수는 W
+                        if(map[n+i].charAt(m+j)!='W') count++;
+                    }
+                }else { //홀수는 WB..
+                    if(j%2==0) { //짝수는 W
+                        if(map[n+i].charAt(m+j)!='W') count++;
+                    }else { //홀수는 B
+                        if(map[n+i].charAt(m+j)!='B') count++;
+                    }
+                }
+            }
+        }
+
+        return count;
     }
 }
