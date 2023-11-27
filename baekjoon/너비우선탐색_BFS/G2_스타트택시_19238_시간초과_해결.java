@@ -1,11 +1,11 @@
-package 구현_implement;
+package 너비우선탐색_BFS;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class 스타트택시_19238_시간초과_해결 {
+public class G2_스타트택시_19238_시간초과_해결 {
 
     //문제: 골드2 스타트 택시 19238
 
