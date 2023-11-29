@@ -1,4 +1,4 @@
-package 큪_Queue;
+package 큐_Queue;
 
 import java.io.*;
 import java.util.PriorityQueue;
