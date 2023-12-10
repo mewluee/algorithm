@@ -65,20 +65,24 @@ public class G5_넴모넴모easy_14712 {
     }
 
     //성공
-    static void dfs2(int r, int c) {
-        //System.out.println("=====================================");
-        //System.out.println("[" + r + ", " + c + "]");
-        //printMap();
+    static void dfs2(int r, int c) { //열값
+        System.out.println("=====================================");
+        System.out.println("[" + r + ", " + c + "]");
+        printMap();
         count2++;
         //System.out.println("현재 count2:" + count2);
+
+        //if문 가지치기
         if (checkSquare(r, c)) {
             //System.out.println("넴모 완성");
             count2--;
             return;
         }
-        for (int m = c + 1; m <= M; m++) {
+
+        //모든 경우 검색하기
+        for (int m = c + 1; m <= M; m++) { //열값
             //System.out.println("m:" + m + ", r:" + r);
-            if (m == M) {
+            if (m == M) { //행값
                 r++;
                 m = 0;
             }
