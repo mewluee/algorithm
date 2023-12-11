@@ -57,6 +57,13 @@ public class G4_감시_15683 {
             //System.out.println(input[n]);
         }
 
+        setting();
+        dfs(input, 0);
+        System.out.println(answer);
+    }
+
+    static void setting() {
+
         cctv_settings = new ArrayList[6];
         for (int n = 0; n < 6; n++) {
             cctv_settings[n] = new ArrayList<>();
@@ -78,9 +85,6 @@ public class G4_감시_15683 {
         cctv_settings[4].add(new int[]{1, 2, 0}); //아래좌위
 
         cctv_settings[5].add(new int[]{0, 1, 2, 3});
-
-        dfs(input, 0);
-        System.out.println(answer);
     }
 
     static void dfs(char[][] map, int count) {
@@ -105,18 +109,17 @@ public class G4_감시_15683 {
 
             //맵 복사
             //System.out.println("맵 깊은 복사:주소값다름");
-            char[][] newMap = new char[N][M];
+            char[][] copy = new char[N][M];
             for (int n = 0; n < N; n++) {
-                newMap[n] = map[n].clone();
-                //System.out.println(Arrays.toString(newMap[n]));
+                copy[n] = map[n].clone();
+                //System.out.println(Arrays.toString(copy[n]));
             }
 
             //System.out.println("i:"+i);
-            int[] directions = cctv_settings[num].get(i);
             //System.out.println("방향:"+Arrays.toString(directions));
 
-            fillRoom(newMap, x, y, directions);
-            dfs(newMap, count + 1);
+            fillRoom(copy, x, y, cctv_settings[num].get(i));
+            dfs(copy, count + 1);
         }
     }
 
